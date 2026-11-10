@@ -1,0 +1,44 @@
+{
+  "goal": "average frontier_gain_over_mini by agent_role",
+  "kind": "group_comparison",
+  "status": "answered",
+  "scope": "All 500 working rows",
+  "columns": [
+    "agent_role",
+    "frontier_gain_over_mini"
+  ],
+  "metrics": {
+    "group_column": "agent_role",
+    "value_column": "frontier_gain_over_mini",
+    "aggregation": "mean",
+    "groups": [
+      {
+        "group": "profiler",
+        "value": 0.170229
+      },
+      {
+        "group": "summarizer",
+        "value": 0.122222
+      },
+      {
+        "group": "coder",
+        "value": 0.053846
+      },
+      {
+        "group": "planner",
+        "value": 0.013542
+      },
+      {
+        "group": "validator",
+        "value": -0.002326
+      }
+    ]
+  },
+  "findings": [
+    "agent_role=profiler: mean frontier_gain_over_mini=0.17.",
+    "agent_role=summarizer: mean frontier_gain_over_mini=0.122.",
+    "agent_role=coder: mean frontier_gain_over_mini=0.0538.",
+    "agent_role=planner: mean frontier_gain_over_mini=0.0135.",
+    "agent_role=validator: mean frontier_gain_over_mini=-0.00233."
+  ]
+}

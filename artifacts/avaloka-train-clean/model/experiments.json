@@ -1,0 +1,79 @@
+{
+  "task": "binary_classification",
+  "metric": "roc_auc",
+  "baseline_score": 0.5,
+  "baseline_strategy": "prior",
+  "beats_baseline": true,
+  "n_train": 1600,
+  "n_test": 400,
+  "holdout_test_size": 0.2,
+  "feature_columns": [
+    "source_benchmark",
+    "task_domain",
+    "agent_role",
+    "difficulty_tag",
+    "prompt_tokens",
+    "prompt_words",
+    "prompt_chars",
+    "prompt_lines",
+    "question_marks",
+    "math_symbols",
+    "digit_count",
+    "uppercase_ratio",
+    "avg_word_length",
+    "golden_reference_words"
+  ],
+  "candidates": [
+    {
+      "name": "random_forest",
+      "algorithm": "random_forest",
+      "primary_metric": "roc_auc",
+      "primary_score": 0.9560400845533548,
+      "metrics": {
+        "accuracy": 0.895,
+        "f1": 0.9139344262295082,
+        "roc_auc": 0.9560400845533548
+      },
+      "cv_mean": 0.9330192046003155,
+      "cv_std": 0.006208745916652167,
+      "train_seconds": 0.769267299969215,
+      "inference_ms_per_1k": 274.712
+    },
+    {
+      "name": "gradient_boosting",
+      "algorithm": "gradient_boosting",
+      "primary_metric": "roc_auc",
+      "primary_score": 0.9486155692998253,
+      "metrics": {
+        "accuracy": 0.8775,
+        "f1": 0.901010101010101,
+        "roc_auc": 0.9486155692998253
+      },
+      "cv_mean": 0.9312163632235059,
+      "cv_std": 0.014611138524624688,
+      "train_seconds": 0.7860928999725729,
+      "inference_ms_per_1k": 25.618
+    },
+    {
+      "name": "logistic_regression",
+      "algorithm": "logistic_regression",
+      "primary_metric": "roc_auc",
+      "primary_score": 0.9443096114199222,
+      "metrics": {
+        "accuracy": 0.89,
+        "f1": 0.9067796610169492,
+        "roc_auc": 0.9443096114199222
+      },
+      "cv_mean": 0.9203418760273874,
+      "cv_std": 0.013164929263142566,
+      "train_seconds": 0.08174739999230951,
+      "inference_ms_per_1k": 33.653
+    }
+  ],
+  "selected": "random_forest",
+  "selected_metrics": {
+    "accuracy": 0.895,
+    "f1": 0.9139344262295082,
+    "roc_auc": 0.9560400845533548
+  }
+}

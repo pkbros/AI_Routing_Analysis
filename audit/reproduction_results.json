@@ -1,0 +1,56 @@
+{
+  "contract_passed": 4,
+  "contract_total": 4,
+  "expected_gaps_reproduced": 1,
+  "expected_gaps_total": 1,
+  "probes": [
+    {
+      "probe": "sheet_selection_ignores_the_question",
+      "class": "EXPECTED_GAP",
+      "declared_as": "xlsx_decoy_sheet_outweighs_the_answer",
+      "asked_about": "best_frontier_score by task_domain (Routing_Cost_Summary)",
+      "observed_sheet_columns": "5 cols x 400 rows",
+      "workload_sizing_reported": "99 rows",
+      "goal_answered": false,
+      "verdict_reported": "PASS",
+      "reproduced": true,
+      "note": "A question about a column Avaloka never read is disclosed as unanswered, but the sizing line and the profile line disagree on the row count, and the validation verdict is still PASS with no sheet-level warning."
+    },
+    {
+      "probe": "unresolved_measure_is_disclosed",
+      "class": "CONTRACT",
+      "declared_as": "#475",
+      "goal": "total cost by task_domain",
+      "disclosed_as_unresolved": true,
+      "names_candidate_columns": true,
+      "refuses_to_guess": true,
+      "passed": true
+    },
+    {
+      "probe": "post_call_leakage_is_blocked",
+      "class": "CONTRACT",
+      "declared_as": "DQ-01",
+      "leaking_column_named": true,
+      "verdict": "FAIL",
+      "ceiling_capped_at_1": true,
+      "passed": true
+    },
+    {
+      "probe": "model_must_beat_a_trivial_baseline",
+      "class": "CONTRACT",
+      "declared_as": "DQ-05",
+      "baseline_reported": true,
+      "winner_compared_to_baseline": true,
+      "passed": true
+    },
+    {
+      "probe": "null_like_word_stays_a_category",
+      "class": "CONTRACT",
+      "declared_as": "#474 / #479",
+      "kept_as_a_group_by": true,
+      "quality_score": "98",
+      "passed": true,
+      "note": "'None' is the largest fallback_route segment (1,631 of 2,000 rows) and is preserved as a real category rather than merged into a nan group."
+    }
+  ]
+}

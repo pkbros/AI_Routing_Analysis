@@ -1,0 +1,30 @@
+mission:
+  id: 8a67a2b0db7c
+  goal: average best_frontier_score by task_domain
+  kind: analyze
+sampling:
+  sampled: false
+  reason: 400 rows fits the live full-analysis lane; the full dataset is used so no
+    information is discarded.
+  n_input_rows: 400
+  n_working_rows: 400
+  strategy: none
+  stratify_by: null
+transformations:
+- op: strip_whitespace
+  columns:
+  - prompt_id
+task_choice:
+  task: exploratory_analysis
+  reason: No --target supplied; mission is analysis-only.
+split:
+  strategy: none
+  reason: Analysis-only mission; no model split required.
+human_approval_gates:
+- Confirm the target and metric match the intended decision.
+refuse_if:
+- Target leakage is detected and unresolved.
+- Data is insufficient for a stable estimate of the chosen metric.
+- A requested deployment latency cannot be met by any candidate.
+data_quality_issues: []
+deferred_decisions: []

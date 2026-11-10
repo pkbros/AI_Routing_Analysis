@@ -1,0 +1,15 @@
+{
+  "mission_duration_seconds": 10.923982999986038,
+  "estimated_manual_effort_hours": 24.6,
+  "human_review_hours": 2.21,
+  "compute_cost_usd": 0.01,
+  "model_cost_usd": 0.0,
+  "mission_charge_usd": 0.0,
+  "total_mission_cost_usd": 0.01,
+  "human_review_cost_usd": 176.8,
+  "total_customer_cost_usd": 176.81,
+  "estimated_labor_value_usd": 1968.0,
+  "economic_multiplier": 11.1,
+  "loaded_hourly_rate_usd": 80.0,
+  "tier": "community"
+}

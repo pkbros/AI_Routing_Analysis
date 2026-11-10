@@ -1,0 +1,94 @@
+{
+  "task": "binary_classification",
+  "metric": "roc_auc",
+  "baseline_score": 0.5,
+  "baseline_strategy": "prior",
+  "beats_baseline": true,
+  "n_train": 1600,
+  "n_test": 400,
+  "holdout_test_size": 0.2,
+  "feature_columns": [
+    "source_benchmark",
+    "task_domain",
+    "agent_role",
+    "difficulty_tag",
+    "prompt_tokens",
+    "prompt_words",
+    "prompt_chars",
+    "prompt_lines",
+    "question_marks",
+    "math_symbols",
+    "digit_count",
+    "uppercase_ratio",
+    "avg_word_length",
+    "golden_reference_words",
+    "fallback_route",
+    "claude_sonnet_score",
+    "gpt4o_score",
+    "llama70b_score",
+    "gpt4o_mini_score",
+    "llama8b_score",
+    "best_frontier_score",
+    "best_mid_score",
+    "best_economy_score",
+    "frontier_advantage",
+    "frontier_gain_over_mini",
+    "cost_per_1k_frontier_usd",
+    "cost_per_1k_economy_usd",
+    "frontier_cost_multiplier",
+    "post_call_route_flag"
+  ],
+  "candidates": [
+    {
+      "name": "logistic_regression",
+      "algorithm": "logistic_regression",
+      "primary_metric": "roc_auc",
+      "primary_score": 1.0,
+      "metrics": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0
+      },
+      "cv_mean": 1.0,
+      "cv_std": 0.0,
+      "train_seconds": 0.037636300025042146,
+      "inference_ms_per_1k": 60.996
+    },
+    {
+      "name": "random_forest",
+      "algorithm": "random_forest",
+      "primary_metric": "roc_auc",
+      "primary_score": 1.0,
+      "metrics": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0
+      },
+      "cv_mean": 1.0,
+      "cv_std": 0.0,
+      "train_seconds": 1.0678875000448897,
+      "inference_ms_per_1k": 289.488
+    },
+    {
+      "name": "gradient_boosting",
+      "algorithm": "gradient_boosting",
+      "primary_metric": "roc_auc",
+      "primary_score": 1.0,
+      "metrics": {
+        "accuracy": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0
+      },
+      "cv_mean": 1.0,
+      "cv_std": 0.0,
+      "train_seconds": 0.6147031000000425,
+      "inference_ms_per_1k": 33.965
+    }
+  ],
+  "selected": "logistic_regression",
+  "selected_metrics": {
+    "accuracy": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "goal": "average cost_per_1k_frontier_usd by fallback_route",
+  "kind": "group_comparison",
+  "status": "answered",
+  "scope": "All 2,000 working rows",
+  "columns": [
+    "fallback_route",
+    "cost_per_1k_frontier_usd"
+  ],
+  "metrics": {
+    "group_column": "fallback_route",
+    "value_column": "cost_per_1k_frontier_usd",
+    "aggregation": "mean",
+    "groups": [
+      {
+        "group": "mid_tier_llama70b",
+        "value": 5.534126
+      },
+      {
+        "group": "human_review_escalation",
+        "value": 5.096263
+      },
+      {
+        "group": "None",
+        "value": 4.748278
+      },
+      {
+        "group": "frontier_claude_gpt4o",
+        "value": 4.449303
+      }
+    ]
+  },
+  "findings": [
+    "fallback_route=mid_tier_llama70b: mean cost_per_1k_frontier_usd=5.53.",
+    "fallback_route=human_review_escalation: mean cost_per_1k_frontier_usd=5.1.",
+    "fallback_route=None: mean cost_per_1k_frontier_usd=4.75.",
+    "fallback_route=frontier_claude_gpt4o: mean cost_per_1k_frontier_usd=4.45."
+  ]
+}

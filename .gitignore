@@ -1,0 +1,15 @@
+# Private participant playbooks & scratch
+_participant_guides/
+.avaloka-src/
+.venv/
+data/_raw_sprout_test_cache.json
+artifacts/_audit_runs/
+
+# Python / OS artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.env
+.DS_Store
+Thumbs.db

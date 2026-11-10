@@ -1,0 +1,55 @@
+{
+  "verdict": "fail",
+  "max_safe_deployment_level": 1,
+  "checks": [
+    {
+      "name": "data_sufficiency",
+      "status": "pass",
+      "severity": "medium",
+      "detail": "~50 rows/feature suggests >= 1500 rows for 30 features."
+    },
+    {
+      "name": "target_leakage",
+      "status": "fail",
+      "severity": "high",
+      "detail": "1 feature(s) appear to encode the target: post_call_route_flag"
+    },
+    {
+      "name": "split_validity",
+      "status": "pass",
+      "severity": "medium",
+      "detail": "Used 'stratified_train_test' (1600 train / 400 test rows)."
+    },
+    {
+      "name": "beats_baseline",
+      "status": "pass",
+      "severity": "high",
+      "detail": "CV roc_auc 1.000 beats the prior baseline (0.500) by more than fold noise."
+    },
+    {
+      "name": "stability",
+      "status": "pass",
+      "severity": "medium",
+      "detail": "CV roc_auc = 1.000 +/- 0.000 (stable)."
+    },
+    {
+      "name": "overfitting",
+      "status": "pass",
+      "severity": "low",
+      "detail": "Holdout and CV scores are consistent."
+    }
+  ],
+  "leakage": [
+    {
+      "column": "post_call_route_flag",
+      "kind": "near_perfect_correlation",
+      "value": 1.0,
+      "severity": "high",
+      "detail": "|corr| with target = 1.000; likely leakage."
+    }
+  ],
+  "blocking_issues": [
+    "1 feature(s) appear to encode the target: post_call_route_flag"
+  ],
+  "note": "This is the technical safety ceiling. Production (Level 4) additionally requires explicit human approval at deploy time; Avaloka never auto-promotes."
+}

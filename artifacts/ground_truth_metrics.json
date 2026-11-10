@@ -1,0 +1,163 @@
+{
+  "n_rows": 2000,
+  "n_cols": 31,
+  "overall": {
+    "mean_claude_sonnet_score": 0.83265,
+    "mean_gpt4o_score": 0.84825,
+    "mean_llama70b_score": 0.80945,
+    "mean_gpt4o_mini_score": 0.80375,
+    "mean_llama8b_score": 0.6841,
+    "mean_best_frontier_score": 0.92815,
+    "mean_best_mid_score": 0.9167,
+    "mean_best_economy_score": 0.9103,
+    "mean_frontier_advantage": 0.01785,
+    "mean_cost_per_1k_frontier_usd": 4.81877,
+    "mean_cost_per_1k_economy_usd": 0.093856,
+    "mean_frontier_cost_multiplier": 62.5766,
+    "high_compute_route_positive_rate": 0.6015
+  },
+  "by_task_domain": {
+    "enterprise_rag": {
+      "count": 78,
+      "mean_frontier_advantage": -0.00641,
+      "mean_best_frontier_score": 0.988462,
+      "mean_best_economy_score": 0.994872,
+      "mean_cost_per_1k_frontier_usd": 6.749859,
+      "mean_cost_per_1k_economy_usd": 0.118833,
+      "mean_frontier_cost_multiplier": 61.0729,
+      "high_compute_route_rate": 0.1026
+    },
+    "general_instruction": {
+      "count": 854,
+      "mean_frontier_advantage": 0.008665,
+      "mean_best_frontier_score": 0.95,
+      "mean_best_economy_score": 0.941335,
+      "mean_cost_per_1k_frontier_usd": 5.511929,
+      "mean_cost_per_1k_economy_usd": 0.087553,
+      "mean_frontier_cost_multiplier": 73.3766,
+      "high_compute_route_rate": 0.8138
+    },
+    "graduate_science_qa": {
+      "count": 28,
+      "mean_frontier_advantage": -0.064286,
+      "mean_best_frontier_score": 0.817857,
+      "mean_best_economy_score": 0.882143,
+      "mean_cost_per_1k_frontier_usd": 6.125357,
+      "mean_cost_per_1k_economy_usd": 0.132286,
+      "mean_frontier_cost_multiplier": 57.4507,
+      "high_compute_route_rate": 0.8214
+    },
+    "math_reasoning": {
+      "count": 453,
+      "mean_frontier_advantage": 0.026269,
+      "mean_best_frontier_score": 0.932671,
+      "mean_best_economy_score": 0.906402,
+      "mean_cost_per_1k_frontier_usd": 4.603885,
+      "mean_cost_per_1k_economy_usd": 0.110574,
+      "mean_frontier_cost_multiplier": 50.6916,
+      "high_compute_route_rate": 0.6049
+    },
+    "multistep_deduction": {
+      "count": 38,
+      "mean_frontier_advantage": -0.236842,
+      "mean_best_frontier_score": 0.684211,
+      "mean_best_economy_score": 0.921053,
+      "mean_cost_per_1k_frontier_usd": 5.217763,
+      "mean_cost_per_1k_economy_usd": 0.089395,
+      "mean_frontier_cost_multiplier": 59.2321,
+      "high_compute_route_rate": 0.0
+    },
+    "multitask_knowledge": {
+      "count": 549,
+      "mean_frontier_advantage": 0.050455,
+      "mean_best_frontier_score": 0.904372,
+      "mean_best_economy_score": 0.853916,
+      "mean_cost_per_1k_frontier_usd": 3.549215,
+      "mean_cost_per_1k_economy_usd": 0.084667,
+      "mean_frontier_cost_multiplier": 56.29,
+      "high_compute_route_rate": 0.3698
+    }
+  },
+  "by_agent_role": {
+    "coder": {
+      "count": 170,
+      "mean_frontier_advantage": 0.000588,
+      "mean_frontier_gain_over_mini": 0.072941,
+      "mean_cost_per_1k_frontier_usd": 6.622482,
+      "mean_cost_per_1k_economy_usd": 0.111706,
+      "mean_claude_sonnet_score": 0.894118,
+      "mean_gpt4o_mini_score": 0.821176,
+      "high_compute_route_rate": 0.5529
+    },
+    "planner": {
+      "count": 810,
+      "mean_frontier_advantage": -0.000741,
+      "mean_frontier_gain_over_mini": -0.000741,
+      "mean_cost_per_1k_frontier_usd": 5.328977,
+      "mean_cost_per_1k_economy_usd": 0.08617,
+      "mean_claude_sonnet_score": 0.878765,
+      "mean_gpt4o_mini_score": 0.879506,
+      "high_compute_route_rate": 0.7741
+    },
+    "profiler": {
+      "count": 511,
+      "mean_frontier_advantage": 0.053816,
+      "mean_frontier_gain_over_mini": 0.121526,
+      "mean_cost_per_1k_frontier_usd": 3.584838,
+      "mean_cost_per_1k_economy_usd": 0.085589,
+      "mean_claude_sonnet_score": 0.786693,
+      "mean_gpt4o_mini_score": 0.665166,
+      "high_compute_route_rate": 0.3796
+    },
+    "summarizer": {
+      "count": 44,
+      "mean_frontier_advantage": -0.004545,
+      "mean_frontier_gain_over_mini": 0.013636,
+      "mean_cost_per_1k_frontier_usd": 3.893091,
+      "mean_cost_per_1k_economy_usd": 0.064773,
+      "mean_claude_sonnet_score": 0.965909,
+      "mean_gpt4o_mini_score": 0.952273,
+      "high_compute_route_rate": 0.0227
+    },
+    "validator": {
+      "count": 465,
+      "mean_frontier_advantage": 0.01914,
+      "mean_frontier_gain_over_mini": -0.035914,
+      "mean_cost_per_1k_frontier_usd": 4.714191,
+      "mean_cost_per_1k_economy_usd": 0.112555,
+      "mean_claude_sonnet_score": 0.767742,
+      "mean_gpt4o_mini_score": 0.803656,
+      "high_compute_route_rate": 0.6172
+    }
+  },
+  "by_fallback_route": {
+    "None": {
+      "count": 1631,
+      "share_pct": 81.55,
+      "mean_cost_per_1k_frontier_usd": 4.748278,
+      "total_cost_per_1k_frontier_usd": 7744.442,
+      "mean_frontier_advantage": -0.012201
+    },
+    "frontier_claude_gpt4o": {
+      "count": 99,
+      "share_pct": 4.95,
+      "mean_cost_per_1k_frontier_usd": 4.449303,
+      "total_cost_per_1k_frontier_usd": 440.481,
+      "mean_frontier_advantage": 0.383838
+    },
+    "human_review_escalation": {
+      "count": 95,
+      "share_pct": 4.75,
+      "mean_cost_per_1k_frontier_usd": 5.096263,
+      "total_cost_per_1k_frontier_usd": 484.145,
+      "mean_frontier_advantage": -0.137895
+    },
+    "mid_tier_llama70b": {
+      "count": 175,
+      "share_pct": 8.75,
+      "mean_cost_per_1k_frontier_usd": 5.534126,
+      "total_cost_per_1k_frontier_usd": 968.472,
+      "mean_frontier_advantage": 0.175429
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Avaloka inference request",
+  "type": "object",
+  "properties": {
+    "instances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_benchmark": {
+            "type": "string"
+          },
+          "task_domain": {
+            "type": "string"
+          },
+          "agent_role": {
+            "type": "string"
+          },
+          "difficulty_tag": {
+            "type": "string"
+          },
+          "prompt_tokens": {
+            "type": "number"
+          },
+          "prompt_words": {
+            "type": "number"
+          },
+          "prompt_chars": {
+            "type": "number"
+          },
+          "prompt_lines": {
+            "type": "number"
+          },
+          "question_marks": {
+            "type": "number"
+          },
+          "math_symbols": {
+            "type": "number"
+          },
+          "digit_count": {
+            "type": "number"
+          },
+          "uppercase_ratio": {
+            "type": "number"
+          },
+          "avg_word_length": {
+            "type": "number"
+          },
+          "golden_reference_words": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "source_benchmark",
+          "task_domain",
+          "agent_role",
+          "difficulty_tag",
+          "prompt_tokens",
+          "prompt_words",
+          "prompt_chars",
+          "prompt_lines",
+          "question_marks",
+          "math_symbols",
+          "digit_count",
+          "uppercase_ratio",
+          "avg_word_length",
+          "golden_reference_words"
+        ]
+      }
+    }
+  },
+  "required": [
+    "instances"
+  ],
+  "x-avaloka": {
+    "task": "binary_classification",
+    "metric": "roc_auc",
+    "target": "high_compute_route"
+  },
+  "x-response": {
+    "predictions": "array",
+    "model_version": "string"
+  }
+}

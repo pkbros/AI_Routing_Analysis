@@ -1,0 +1,48 @@
+{
+  "goal": "average frontier_cost_multiplier by task_domain",
+  "kind": "group_comparison",
+  "status": "answered",
+  "scope": "All 2,000 working rows",
+  "columns": [
+    "task_domain",
+    "frontier_cost_multiplier"
+  ],
+  "metrics": {
+    "group_column": "task_domain",
+    "value_column": "frontier_cost_multiplier",
+    "aggregation": "mean",
+    "groups": [
+      {
+        "group": "general_instruction",
+        "value": 73.376593
+      },
+      {
+        "group": "enterprise_rag",
+        "value": 61.072949
+      },
+      {
+        "group": "multistep_deduction",
+        "value": 59.232105
+      },
+      {
+        "group": "graduate_science_qa",
+        "value": 57.450714
+      },
+      {
+        "group": "multitask_knowledge",
+        "value": 56.289964
+      },
+      {
+        "group": "math_reasoning",
+        "value": 50.691589
+      }
+    ]
+  },
+  "findings": [
+    "task_domain=general_instruction: mean frontier_cost_multiplier=73.4.",
+    "task_domain=enterprise_rag: mean frontier_cost_multiplier=61.1.",
+    "task_domain=multistep_deduction: mean frontier_cost_multiplier=59.2.",
+    "task_domain=graduate_science_qa: mean frontier_cost_multiplier=57.5.",
+    "task_domain=multitask_knowledge: mean frontier_cost_multiplier=56.3."
+  ]
+}

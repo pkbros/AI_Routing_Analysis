@@ -1,0 +1,120 @@
+target: high_compute_route
+features:
+- name: source_benchmark
+  role: categorical
+  dtype: object
+  required: true
+  known_categories:
+  - openhermes/teknium
+  - TIGER-Lab/MMLU-Pro
+  - lighteval/MATH/all
+  - lighteval/MATH/all/test
+  - Idavidrein/gpqa/gpqa_extended
+  - TAUR-Lab/MuSR
+  - TAUR-Lab/MuSR/object_placements
+  - rungalileo/ragbench/cuad
+  - rungalileo/ragbench/covidqa
+  - rungalileo/ragbench/hagrid
+- name: task_domain
+  role: categorical
+  dtype: object
+  required: true
+  known_categories:
+  - general_instruction
+  - multitask_knowledge
+  - math_reasoning
+  - enterprise_rag
+  - multistep_deduction
+  - graduate_science_qa
+- name: agent_role
+  role: categorical
+  dtype: object
+  required: true
+  known_categories:
+  - planner
+  - profiler
+  - validator
+  - coder
+  - summarizer
+- name: difficulty_tag
+  role: categorical
+  dtype: object
+  required: true
+  known_categories:
+  - standard
+  - Level 5
+  - Level 4
+  - Level 3
+  - Level 2
+  - Level 1
+- name: prompt_tokens
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 12.0
+  - 10435.0
+- name: prompt_words
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 2.0
+  - 7744.0
+- name: prompt_chars
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 18.0
+  - 50150.0
+- name: prompt_lines
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 1.0
+  - 951.0
+- name: question_marks
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 0.0
+  - 83.0
+- name: math_symbols
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 0.0
+  - 961.0
+- name: digit_count
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 0.0
+  - 1121.0
+- name: uppercase_ratio
+  role: numeric
+  dtype: float64
+  required: true
+  expected_range:
+  - 0.0004
+  - 0.3677
+- name: avg_word_length
+  role: numeric
+  dtype: float64
+  required: true
+  expected_range:
+  - 3.125
+  - 47.0
+- name: golden_reference_words
+  role: numeric
+  dtype: int64
+  required: true
+  expected_range:
+  - 1.0
+  - 855.0
+enforcement: Reject or flag requests whose features fall outside the contract.

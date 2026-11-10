@@ -1,0 +1,165 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Technical report — average frontier_gain_over_mini by agent_role</title>
+<style>
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1b1f24;background:#f6f8fa}
+.wrap{max-width:960px;margin:0 auto;padding:32px}
+h1{font-size:28px;margin:0 0 4px} h2{font-size:20px;margin:28px 0 8px;border-bottom:1px solid #e1e4e8;padding-bottom:6px}
+.sub{color:#57606a;margin:0 0 20px}
+.card{background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:16px 20px;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14px} th,td{text-align:left;padding:7px 10px;border-bottom:1px solid #eaecef}
+th{background:#f6f8fa} .kpi{display:inline-block;min-width:150px;margin:6px 18px 6px 0}
+.kpi .v{font-size:22px;font-weight:600} .kpi .l{color:#57606a;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.pass{color:#1a7f37;font-weight:600}.warn{color:#9a6700;font-weight:600}.fail{color:#cf222e;font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:12px;background:#ddf4ff;color:#0969da}
+.muted{color:#57606a;font-size:13px} code{background:#eff1f3;padding:1px 5px;border-radius:4px}
+</style></head><body><div class="wrap">
+<h1>Technical report</h1>
+<p class="sub">average frontier_gain_over_mini by agent_role · mission <code>7f6ff034e112</code></p>
+
+<h2>Dataset</h2>
+<div class="card"><p><code>artifacts\avaloka-fleet\sub-avaloka-00\shard.csv</code> — 500 rows × 31 cols
+(csv). Quality score <strong>98/100</strong>.
+SHA-256 <span class="muted">f06a9122774e86a4…</span></p></div>
+
+<h2>Schema &amp; distributions</h2>
+<div class="card"><table><tr><th>Column</th><th>Role</th><th>Dtype</th><th>Missing</th><th>Unique</th><th>Summary</th></tr>
+<tr><td>prompt_id</td><td>id</td><td>object</td>
+<td>0.0%</td><td>500</td>
+<td class="muted">top: d645f15ac20b8c56f581ace2129baefa5baf6c027b688a06e4b61df9edac332f(1), cab46262756d18245c49fe4301735f94eb12e64d3cd9be29eb2ea68617bd0585(1), 29ce0b2c2f23afd5ab2d5bf07a0afea58a7bb208240db9f7ac4c5dacb1648c3e(1)</td></tr><tr><td>source_benchmark</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>17</td>
+<td class="muted">top: openhermes/teknium(204), TIGER-Lab/MMLU-Pro(143), lighteval/MATH/all(95)</td></tr><tr><td>task_domain</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>6</td>
+<td class="muted">top: general_instruction(204), multitask_knowledge(143), math_reasoning(124)</td></tr><tr><td>agent_role</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>5</td>
+<td class="muted">top: planner(192), profiler(131), validator(129)</td></tr><tr><td>difficulty_tag</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>6</td>
+<td class="muted">top: standard(376), Level 4(32), Level 3(30)</td></tr><tr><td>prompt_tokens</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>229</td>
+<td class="muted">μ=162, σ=442,
+[12, 6.82e+03], outliers=39
+</td></tr><tr><td>prompt_words</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>185</td>
+<td class="muted">μ=99.9, σ=265,
+[2, 4.61e+03], outliers=43
+</td></tr><tr><td>prompt_chars</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>363</td>
+<td class="muted">μ=635, σ=1.91e+03,
+[18, 3.02e+04], outliers=43
+</td></tr><tr><td>prompt_lines</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>33</td>
+<td class="muted">μ=9.66, σ=43.3,
+[1, 951], outliers=7
+</td></tr><tr><td>question_marks</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>7</td>
+<td class="muted">μ=0.866, σ=3.79,
+[0, 83], outliers=6
+</td></tr><tr><td>code_fences</td><td>constant</td><td>int64</td>
+<td>0.0%</td><td>1</td>
+<td class="muted"></td></tr><tr><td>math_symbols</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>60</td>
+<td class="muted">μ=10.3, σ=38.2,
+[0, 765], outliers=62
+</td></tr><tr><td>digit_count</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>83</td>
+<td class="muted">μ=16.6, σ=59.3,
+[0, 1.12e+03], outliers=69
+</td></tr><tr><td>uppercase_ratio</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>333</td>
+<td class="muted">μ=0.0298, σ=0.0251,
+[0.0005, 0.219], outliers=19
+</td></tr><tr><td>avg_word_length</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>435</td>
+<td class="muted">μ=6.31, σ=1.49,
+[3.12, 19.5], outliers=26
+</td></tr><tr><td>golden_reference_words</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>238</td>
+<td class="muted">μ=135, σ=160,
+[1, 819], outliers=7
+</td></tr><tr><td>fallback_route</td><td>categorical</td><td>object</td>
+<td>0.0%</td><td>4</td>
+<td class="muted">top: None(388), mid_tier_llama70b(61), human_review_escalation(27)</td></tr><tr><td>claude_sonnet_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>5</td>
+<td class="muted">μ=0.822, σ=0.361,
+[0, 1], outliers=80
+</td></tr><tr><td>gpt4o_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>6</td>
+<td class="muted">μ=0.837, σ=0.349,
+[0, 1], outliers=75
+</td></tr><tr><td>llama70b_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>7</td>
+<td class="muted">μ=0.805, σ=0.351,
+[0, 1], outliers=80
+</td></tr><tr><td>gpt4o_mini_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>6</td>
+<td class="muted">μ=0.767, σ=0.41,
+[0, 1], outliers=112
+</td></tr><tr><td>llama8b_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>8</td>
+<td class="muted">μ=0.663, σ=0.442,
+[0, 1], outliers=0
+</td></tr><tr><td>best_frontier_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>7</td>
+<td class="muted">μ=0.926, σ=0.237,
+[0, 1], outliers=81
+</td></tr><tr><td>best_mid_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>6</td>
+<td class="muted">μ=0.912, σ=0.249,
+[0, 1], outliers=117
+</td></tr><tr><td>best_economy_score</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>4</td>
+<td class="muted">μ=0.902, σ=0.28,
+[0, 1], outliers=92
+</td></tr><tr><td>frontier_advantage</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>13</td>
+<td class="muted">μ=0.024, σ=0.281,
+[-1, 1], outliers=83
+</td></tr><tr><td>frontier_gain_over_mini</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>13</td>
+<td class="muted">μ=0.0556, σ=0.38,
+[-1, 1], outliers=142
+</td></tr><tr><td>cost_per_1k_frontier_usd</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>483</td>
+<td class="muted">μ=4.6, σ=3.01,
+[0.735, 29.8], outliers=8
+</td></tr><tr><td>cost_per_1k_economy_usd</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>184</td>
+<td class="muted">μ=0.0922, σ=0.0672,
+[0.004, 0.44], outliers=33
+</td></tr><tr><td>frontier_cost_multiplier</td><td>numeric</td><td>float64</td>
+<td>0.0%</td><td>479</td>
+<td class="muted">μ=62, σ=32.7,
+[8.48, 272], outliers=25
+</td></tr><tr><td>high_compute_route</td><td>numeric</td><td>int64</td>
+<td>0.0%</td><td>2</td>
+<td class="muted">μ=0.586, σ=0.493,
+[0, 1], outliers=0
+</td></tr></table></div>
+
+<h2>Strongest correlations</h2>
+<div class="card"><table><tr><th>A</th><th>B</th><th>|corr|</th></tr>
+<tr><td>prompt_tokens</td><td>prompt_chars</td><td>0.987</td></tr><tr><td>prompt_words</td><td>prompt_chars</td><td>0.9812</td></tr><tr><td>prompt_lines</td><td>question_marks</td><td>0.9662</td></tr><tr><td>prompt_tokens</td><td>prompt_words</td><td>0.9458</td></tr></table></div>
+<h2>Data quality issues</h2>
+<div class="card"><table><tr><th>Severity</th><th>Column</th><th>Issue</th></tr>
+<tr><td class="muted">low</td>
+<td>code_fences</td><td>Column has a single value; no predictive content.</td></tr></table>
+</div>
+
+<h2>Plan</h2>
+<div class="card"><p>Task: <strong>exploratory_analysis</strong> — No --target supplied; mission is analysis-only.</p>
+<p>Split: <code>none</code> — Analysis-only mission; no model split required.</p>
+<p>Candidate algorithms: —</p>
+<p class="muted">Unconstrained budget; all candidate algorithms considered.</p>
+<p><strong>Hypotheses:</strong></p><ul><li>&#39;prompt_tokens&#39; and &#39;prompt_chars&#39; move together (|corr|=0.987); consider redundancy or a shared driver.</li><li>&#39;prompt_words&#39; and &#39;prompt_chars&#39; move together (|corr|=0.9812); consider redundancy or a shared driver.</li><li>&#39;prompt_lines&#39; and &#39;question_marks&#39; move together (|corr|=0.9662); consider redundancy or a shared driver.</li><li>Surface the dominant segments and the variables that separate them.</li></ul></div>
+
+<h2>Goal-specific analysis</h2>
+<div class="card"><p><strong>group_comparison</strong> — answered
+· All 500 working rows</p><ul><li>agent_role=profiler: mean frontier_gain_over_mini=0.17.</li><li>agent_role=summarizer: mean frontier_gain_over_mini=0.122.</li><li>agent_role=coder: mean frontier_gain_over_mini=0.0538.</li><li>agent_role=planner: mean frontier_gain_over_mini=0.0135.</li><li>agent_role=validator: mean frontier_gain_over_mini=-0.00233.</li></ul>
+<p class="muted">Measured values and calculation details: <code>goal_analysis.json</code>.</p></div>
+
+<h2>Validation</h2>
+<div class="card"><p>Verdict <span class="pass">PASS</span>,
+max safe deployment level 1.</p>
+<table><tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+<tr><td>data_sufficiency</td><td class="pass">pass</td><td class="muted">EDA needs only a modest sample.</td></tr></table></div>
+
+<p class="muted">Reproduce with <code>analysis.py</code> / <code>analysis.ipynb</code>; see <code>lineage.json</code> and <code>environment.lock</code>.</p>
+</div></body></html>

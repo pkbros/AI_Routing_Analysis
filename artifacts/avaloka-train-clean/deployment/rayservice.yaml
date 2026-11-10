@@ -1,0 +1,8 @@
+apiVersion: ray.io/v1
+kind: RayService
+metadata:
+  name: avaloka-0ee49c7e
+spec:
+  serveConfigV2: "applications:\n  - name: avaloka\n    import_path: service:app\n\
+    \    deployments:\n      - name: inference\n        autoscaling_config:\n    \
+    \      min_replicas: 0\n          max_replicas: 4\n"

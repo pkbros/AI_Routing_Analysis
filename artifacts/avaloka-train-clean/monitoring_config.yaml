@@ -1,0 +1,33 @@
+model_version: 0ee49c7e6145
+data_drift:
+  method: population_stability_index
+  warn_threshold: 0.1
+  alert_threshold: 0.2
+  features:
+  - source_benchmark
+  - task_domain
+  - agent_role
+  - difficulty_tag
+  - prompt_tokens
+  - prompt_words
+  - prompt_chars
+  - prompt_lines
+  - question_marks
+  - math_symbols
+  - digit_count
+  - uppercase_ratio
+  - avg_word_length
+  - golden_reference_words
+prediction_drift:
+  method: psi
+  alert_threshold: 0.2
+performance:
+  recompute_on: labelled_feedback
+  alert_if_metric_drops_by: 0.05
+operational:
+  latency_p95_ms_alert: 250
+  error_rate_alert: 0.02
+retrain_triggers:
+- drift_score>0.20
+- performance_drop>0.05
+- schema_change

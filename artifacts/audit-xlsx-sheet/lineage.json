@@ -1,0 +1,108 @@
+{
+  "mission_id": "8a67a2b0db7c",
+  "kind": "analyze",
+  "started_at_epoch": 1794328581.5189035,
+  "source": {
+    "path": "data\\sprout_multi_sheet_audit.xlsx",
+    "sha256": "872378db8fbee64476c27d7ef4028426f9ff2bcdc6d2184cc6d0c87eb534b014",
+    "format": "excel"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "machine": "AMD64",
+    "avaloka_mission_id": "8a67a2b0db7c"
+  },
+  "transformations": [
+    {
+      "op": "strip_whitespace",
+      "columns": [
+        "prompt_id"
+      ]
+    }
+  ],
+  "work_units": [
+    {
+      "firefly": "data_scout",
+      "human_role": "Data analyst",
+      "output": "Profiled 5 columns x 400 rows; quality score 100/100 with 0 issues flagged.",
+      "manual_minutes": 75,
+      "compute_cost_usd": 0.000292,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.4859,
+      "notes": "",
+      "metadata": {
+        "quality_score": 100,
+        "n_issues": 0
+      }
+    },
+    {
+      "firefly": "sampling_specialist",
+      "human_role": "Data scientist",
+      "output": "Working sample: 400 rows (none). 400 rows fits the live full-analysis lane; the full dataset is used so no information is discarded.",
+      "manual_minutes": 30.0,
+      "compute_cost_usd": 0.0,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0002,
+      "notes": "",
+      "metadata": {
+        "sampled": false,
+        "strategy": "none"
+      }
+    },
+    {
+      "firefly": "data_engineer",
+      "human_role": "Data engineer",
+      "output": "Applied 1 documented transformations; wrote transformed_dataset.parquet (400x5) + reproducible analysis.py / analysis.ipynb.",
+      "manual_minutes": 130,
+      "compute_cost_usd": 2.4e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0392,
+      "notes": "",
+      "metadata": {
+        "n_transformations": 1
+      }
+    },
+    {
+      "firefly": "analysis_planner",
+      "human_role": "Senior data scientist",
+      "output": "Planned task='exploratory_analysis' with 0 candidate(s); split='none'; 1 human approval gate(s).",
+      "manual_minutes": 60.0,
+      "compute_cost_usd": 2e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0027,
+      "notes": "",
+      "metadata": {
+        "task": "exploratory_analysis",
+        "n_candidates": 0
+      }
+    },
+    {
+      "firefly": "validator",
+      "human_role": "Model-risk specialist",
+      "output": "Validation verdict='pass'; 1 checks; max safe deployment level 1.",
+      "manual_minutes": 80,
+      "compute_cost_usd": 1e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0018,
+      "notes": "",
+      "metadata": {
+        "verdict": "pass",
+        "max_level": 1
+      }
+    }
+  ],
+  "outputs": [
+    "analysis.ipynb",
+    "analysis.py",
+    "assumptions.yaml",
+    "data_quality.json",
+    "executive_report.html",
+    "goal_analysis.json",
+    "planner_graph.json",
+    "technical_report.html",
+    "transformed_dataset.parquet",
+    "validation_report.json",
+    "workload.json"
+  ]
+}

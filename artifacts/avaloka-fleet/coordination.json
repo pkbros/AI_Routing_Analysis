@@ -1,0 +1,1886 @@
+{
+  "kind": "analyze",
+  "goal": "average frontier_gain_over_mini by agent_role",
+  "source": "data\\sprout_llm_routing.csv",
+  "workers": 4,
+  "n_rows": 2000,
+  "verdict": "pass",
+  "max_safe_deployment_level": 1,
+  "selected_model": null,
+  "converged_profile": {
+    "n_rows": 2000,
+    "n_partitions": 4,
+    "columns": [
+      {
+        "name": "prompt_id",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "categorical",
+        "top_values": [
+          {
+            "value": "d645f15ac20b8c56f581ace2129baefa5baf6c027b688a06e4b61df9edac332f",
+            "count": 1
+          },
+          {
+            "value": "cab46262756d18245c49fe4301735f94eb12e64d3cd9be29eb2ea68617bd0585",
+            "count": 1
+          },
+          {
+            "value": "29ce0b2c2f23afd5ab2d5bf07a0afea58a7bb208240db9f7ac4c5dacb1648c3e",
+            "count": 1
+          },
+          {
+            "value": "f63c5dbca7f6ded8a55b2d4f186695e77cc7235f96d02f38c43c3aa19c5897d1",
+            "count": 1
+          },
+          {
+            "value": "9fe3250069f9cc4c874411ff183c68c6851299090dfbb3806c456a7d54c5c4bf",
+            "count": 1
+          },
+          {
+            "value": "d2d753fa2b2a70f3279123a15bfc760f7e81fa4224dffa74619000bed9724610",
+            "count": 1
+          },
+          {
+            "value": "a452f4a30d23d9d433b1c181078106fe60b06184aa87e931ea39568ebfc2ea6f",
+            "count": 1
+          },
+          {
+            "value": "5dd6370fd968bc01310ca7dd48f67bd1896ff1d47c5420891fecbd7785735376",
+            "count": 1
+          },
+          {
+            "value": "61f5c739c6984c16ffb2be7d55455d744a90e6b806bf4015c1b7ba0a6a405e67",
+            "count": 1
+          },
+          {
+            "value": "a018609be0ad127e651b035399b0aa01f5d8634f7fb2870fe08e3e1f086253a5",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "name": "source_benchmark",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "categorical",
+        "top_values": [
+          {
+            "value": "openhermes/teknium",
+            "count": 854
+          },
+          {
+            "value": "TIGER-Lab/MMLU-Pro",
+            "count": 549
+          },
+          {
+            "value": "lighteval/MATH/all",
+            "count": 343
+          },
+          {
+            "value": "lighteval/MATH/all/test",
+            "count": 110
+          },
+          {
+            "value": "Idavidrein/gpqa/gpqa_extended",
+            "count": 28
+          },
+          {
+            "value": "TAUR-Lab/MuSR",
+            "count": 19
+          },
+          {
+            "value": "TAUR-Lab/MuSR/object_placements",
+            "count": 14
+          },
+          {
+            "value": "rungalileo/ragbench/cuad",
+            "count": 13
+          },
+          {
+            "value": "rungalileo/ragbench/covidqa",
+            "count": 11
+          },
+          {
+            "value": "rungalileo/ragbench/hagrid",
+            "count": 9
+          }
+        ]
+      },
+      {
+        "name": "task_domain",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "categorical",
+        "top_values": [
+          {
+            "value": "general_instruction",
+            "count": 854
+          },
+          {
+            "value": "multitask_knowledge",
+            "count": 549
+          },
+          {
+            "value": "math_reasoning",
+            "count": 453
+          },
+          {
+            "value": "enterprise_rag",
+            "count": 78
+          },
+          {
+            "value": "multistep_deduction",
+            "count": 38
+          },
+          {
+            "value": "graduate_science_qa",
+            "count": 28
+          }
+        ]
+      },
+      {
+        "name": "agent_role",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "categorical",
+        "top_values": [
+          {
+            "value": "planner",
+            "count": 810
+          },
+          {
+            "value": "profiler",
+            "count": 511
+          },
+          {
+            "value": "validator",
+            "count": 465
+          },
+          {
+            "value": "coder",
+            "count": 170
+          },
+          {
+            "value": "summarizer",
+            "count": 44
+          }
+        ]
+      },
+      {
+        "name": "difficulty_tag",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "categorical",
+        "top_values": [
+          {
+            "value": "standard",
+            "count": 1547
+          },
+          {
+            "value": "Level 5",
+            "count": 128
+          },
+          {
+            "value": "Level 4",
+            "count": 109
+          },
+          {
+            "value": "Level 3",
+            "count": 107
+          },
+          {
+            "value": "Level 2",
+            "count": 72
+          },
+          {
+            "value": "Level 1",
+            "count": 37
+          }
+        ]
+      },
+      {
+        "name": "prompt_tokens",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 12.0,
+        "max": 10435.0,
+        "mean": 190.4425,
+        "std": 564.880864
+      },
+      {
+        "name": "prompt_words",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 2.0,
+        "max": 7744.0,
+        "mean": 124.569,
+        "std": 391.771163
+      },
+      {
+        "name": "prompt_chars",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 18.0,
+        "max": 50150.0,
+        "mean": 787.235,
+        "std": 2610.564288
+      },
+      {
+        "name": "prompt_lines",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 1.0,
+        "max": 951.0,
+        "mean": 10.0255,
+        "std": 35.36245
+      },
+      {
+        "name": "question_marks",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 83.0,
+        "mean": 0.7925,
+        "std": 2.225184
+      },
+      {
+        "name": "code_fences",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "name": "math_symbols",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 961.0,
+        "mean": 10.9005,
+        "std": 40.948866
+      },
+      {
+        "name": "digit_count",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1121.0,
+        "mean": 16.5705,
+        "std": 57.113125
+      },
+      {
+        "name": "uppercase_ratio",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0004,
+        "max": 0.3677,
+        "mean": 0.028466,
+        "std": 0.026359
+      },
+      {
+        "name": "avg_word_length",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 3.125,
+        "max": 47.0,
+        "mean": 6.33186,
+        "std": 1.915377
+      },
+      {
+        "name": "golden_reference_words",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 1.0,
+        "max": 855.0,
+        "mean": 145.4955,
+        "std": 162.769109
+      },
+      {
+        "name": "fallback_route",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "categorical",
+        "top_values": [
+          {
+            "value": "None",
+            "count": 1631
+          },
+          {
+            "value": "mid_tier_llama70b",
+            "count": 175
+          },
+          {
+            "value": "frontier_claude_gpt4o",
+            "count": 99
+          },
+          {
+            "value": "human_review_escalation",
+            "count": 95
+          }
+        ]
+      },
+      {
+        "name": "claude_sonnet_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.83265,
+        "std": 0.351111
+      },
+      {
+        "name": "gpt4o_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.84825,
+        "std": 0.337753
+      },
+      {
+        "name": "llama70b_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.80945,
+        "std": 0.342616
+      },
+      {
+        "name": "gpt4o_mini_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.80375,
+        "std": 0.379488
+      },
+      {
+        "name": "llama8b_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.6841,
+        "std": 0.433644
+      },
+      {
+        "name": "best_frontier_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.92815,
+        "std": 0.236923
+      },
+      {
+        "name": "best_mid_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9167,
+        "std": 0.24251
+      },
+      {
+        "name": "best_economy_score",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9103,
+        "std": 0.266052
+      },
+      {
+        "name": "frontier_advantage",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": -1.0,
+        "max": 1.0,
+        "mean": 0.01785,
+        "std": 0.268545
+      },
+      {
+        "name": "frontier_gain_over_mini",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": -1.0,
+        "max": 1.0,
+        "mean": 0.0289,
+        "std": 0.366844
+      },
+      {
+        "name": "cost_per_1k_frontier_usd",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.444,
+        "max": 33.421,
+        "mean": 4.81877,
+        "std": 3.404684
+      },
+      {
+        "name": "cost_per_1k_economy_usd",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.003,
+        "max": 1.046,
+        "mean": 0.093856,
+        "std": 0.072938
+      },
+      {
+        "name": "frontier_cost_multiplier",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 5.98,
+        "max": 446.03,
+        "mean": 62.57661,
+        "std": 32.924945
+      },
+      {
+        "name": "high_compute_route",
+        "missing": 0,
+        "missing_pct": 0.0,
+        "count": 2000,
+        "role": "numeric",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.6015,
+        "std": 0.489589
+      }
+    ]
+  },
+  "economics": {
+    "mission_duration_seconds": 1.5208,
+    "estimated_manual_effort_hours": 64.2,
+    "human_review_hours": 5.78,
+    "compute_cost_usd": 0.0,
+    "model_cost_usd": 0.0,
+    "mission_charge_usd": 0.0,
+    "total_mission_cost_usd": 0.0,
+    "human_review_cost_usd": 462.4,
+    "total_customer_cost_usd": 462.4,
+    "estimated_labor_value_usd": 5136.0,
+    "economic_multiplier": 11.1,
+    "loaded_hourly_rate_usd": 80.0,
+    "tier": "community"
+  },
+  "shards": [
+    {
+      "shard_id": 0,
+      "n_rows": 500,
+      "output_dir": "artifacts\\avaloka-fleet\\sub-avaloka-00\\mission",
+      "verdict": "pass",
+      "max_safe_deployment_level": 1,
+      "manual_minutes": 963.0,
+      "cost_usd": 0.000265,
+      "model": null,
+      "partition_stats": {
+        "n_rows": 500,
+        "columns": {
+          "prompt_id": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "d645f15ac20b8c56f581ace2129baefa5baf6c027b688a06e4b61df9edac332f": 1,
+              "cab46262756d18245c49fe4301735f94eb12e64d3cd9be29eb2ea68617bd0585": 1,
+              "29ce0b2c2f23afd5ab2d5bf07a0afea58a7bb208240db9f7ac4c5dacb1648c3e": 1,
+              "f63c5dbca7f6ded8a55b2d4f186695e77cc7235f96d02f38c43c3aa19c5897d1": 1,
+              "9fe3250069f9cc4c874411ff183c68c6851299090dfbb3806c456a7d54c5c4bf": 1,
+              "d2d753fa2b2a70f3279123a15bfc760f7e81fa4224dffa74619000bed9724610": 1,
+              "a452f4a30d23d9d433b1c181078106fe60b06184aa87e931ea39568ebfc2ea6f": 1,
+              "5dd6370fd968bc01310ca7dd48f67bd1896ff1d47c5420891fecbd7785735376": 1,
+              "61f5c739c6984c16ffb2be7d55455d744a90e6b806bf4015c1b7ba0a6a405e67": 1,
+              "a018609be0ad127e651b035399b0aa01f5d8634f7fb2870fe08e3e1f086253a5": 1,
+              "7c7d592055ba24e931e23a39e4e6b8adb1f4d989e5bd555a6f14e6307d7bf460": 1,
+              "9b540875ebec7e6306b47394fa35cd0e7479e0de688fe37514a364bd9c602d3e": 1,
+              "c93b5fecb6090c54094cfcfc407697b85023233c36bba76227f970af6a259417": 1,
+              "b44af22dd35c56a77720bec99f6981aa410a2a349d4afab7c7a5c6ddaa9fcc36": 1,
+              "416e2b55a58b129971fc1b321f449e31f1ca5dee19b14380a19334558fe361e9": 1,
+              "19d0992a054444956f014f02123b143355029621f8411c4048832e52c9cd47c3": 1,
+              "4b63ed9d70943f77b41a482804725fafb2e46ef2a3c2013f12c879eff6e32286": 1,
+              "552fe6bee8652e4aceddf244eb45772f693f2515a47caeff167971cd4078b5df": 1,
+              "3342d58d86c02b79dc7100783e998fca3a5a4c81940f441d4f4061b43b37c48a": 1,
+              "8288a60e1cfad3f5d026549bc765ff77e2abb8b4071017b68635a39d80db3ecc": 1
+            }
+          },
+          "source_benchmark": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "openhermes/teknium": 204,
+              "TIGER-Lab/MMLU-Pro": 143,
+              "lighteval/MATH/all": 95,
+              "lighteval/MATH/all/test": 29,
+              "Idavidrein/gpqa/gpqa_extended": 7,
+              "TAUR-Lab/MuSR": 5,
+              "rungalileo/ragbench/pubmedqa": 4,
+              "TAUR-Lab/MuSR/object_placements": 2,
+              "TAUR-Lab/MuSR/team_allocation": 2,
+              "rungalileo/ragbench/tatqa": 2,
+              "rungalileo/ragbench/hagrid": 1,
+              "rungalileo/ragbench/hotpotqa": 1,
+              "rungalileo/ragbench/cuad": 1,
+              "rungalileo/ragbench/techqa": 1,
+              "rungalileo/ragbench/msmarco": 1,
+              "rungalileo/ragbench/finqa": 1,
+              "rungalileo/ragbench/covidqa": 1
+            }
+          },
+          "task_domain": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "general_instruction": 204,
+              "multitask_knowledge": 143,
+              "math_reasoning": 124,
+              "enterprise_rag": 13,
+              "multistep_deduction": 9,
+              "graduate_science_qa": 7
+            }
+          },
+          "agent_role": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "planner": 192,
+              "profiler": 131,
+              "validator": 129,
+              "coder": 39,
+              "summarizer": 9
+            }
+          },
+          "difficulty_tag": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "standard": 376,
+              "Level 4": 32,
+              "Level 3": 30,
+              "Level 5": 30,
+              "Level 2": 23,
+              "Level 1": 9
+            }
+          },
+          "prompt_tokens": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 80805.0,
+            "sumsq": 110738475.0,
+            "min": 12.0,
+            "max": 6822.0
+          },
+          "prompt_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 49933.0,
+            "sumsq": 40139219.0,
+            "min": 2.0,
+            "max": 4608.0
+          },
+          "prompt_chars": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 317586.0,
+            "sumsq": 2017569102.0,
+            "min": 18.0,
+            "max": 30210.0
+          },
+          "prompt_lines": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 4829.0,
+            "sumsq": 980279.0,
+            "min": 1.0,
+            "max": 951.0
+          },
+          "question_marks": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 433.0,
+            "sumsq": 7543.0,
+            "min": 0.0,
+            "max": 83.0
+          },
+          "code_fences": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 0.0,
+            "sumsq": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "math_symbols": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 5173.0,
+            "sumsq": 783097.0,
+            "min": 0.0,
+            "max": 765.0
+          },
+          "digit_count": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 8322.0,
+            "sumsq": 1892154.0,
+            "min": 0.0,
+            "max": 1121.0
+          },
+          "uppercase_ratio": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 14.9004,
+            "sumsq": 0.75909178,
+            "min": 0.0005,
+            "max": 0.2192
+          },
+          "avg_word_length": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 3156.1549999999997,
+            "sumsq": 21037.453421,
+            "min": 3.125,
+            "max": 19.533
+          },
+          "golden_reference_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 67351.0,
+            "sumsq": 21908159.0,
+            "min": 1.0,
+            "max": 819.0
+          },
+          "fallback_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "None": 388,
+              "mid_tier_llama70b": 61,
+              "human_review_escalation": 27,
+              "frontier_claude_gpt4o": 24
+            }
+          },
+          "claude_sonnet_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 411.1,
+            "sumsq": 402.95000000000005,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 418.4,
+            "sumsq": 410.78000000000003,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama70b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 402.6,
+            "sumsq": 385.64000000000004,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_mini_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 383.3,
+            "sumsq": 377.83000000000004,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama8b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 331.70000000000005,
+            "sumsq": 317.63,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_frontier_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 463.1,
+            "sumsq": 456.91,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_mid_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 456.20000000000005,
+            "sumsq": 447.28000000000003,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_economy_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 451.1,
+            "sumsq": 445.99,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "frontier_advantage": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 12.0,
+            "sumsq": 39.78,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "frontier_gain_over_mini": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 27.8,
+            "sumsq": 73.76,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "cost_per_1k_frontier_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 2300.903,
+            "sumsq": 15101.852908999997,
+            "min": 0.735,
+            "max": 29.829
+          },
+          "cost_per_1k_economy_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 46.122,
+            "sumsq": 6.505628,
+            "min": 0.004,
+            "max": 0.44
+          },
+          "frontier_cost_multiplier": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 30985.6,
+            "sumsq": 2454038.7808,
+            "min": 8.48,
+            "max": 272.0
+          },
+          "high_compute_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 293.0,
+            "sumsq": 293.0,
+            "min": 0.0,
+            "max": 1.0
+          }
+        }
+      }
+    },
+    {
+      "shard_id": 1,
+      "n_rows": 500,
+      "output_dir": "artifacts\\avaloka-fleet\\sub-avaloka-01\\mission",
+      "verdict": "pass",
+      "max_safe_deployment_level": 1,
+      "manual_minutes": 963.0,
+      "cost_usd": 0.000185,
+      "model": null,
+      "partition_stats": {
+        "n_rows": 500,
+        "columns": {
+          "prompt_id": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "e98cd42eb854dce1cf3b93805a5cc64279cb347a30f6417ce6f77b8bbe015c76": 1,
+              "6e9d7346c9cc684cd785d61e66e8bdd91c3ee70bf1b065b444d44780ae143400": 1,
+              "aaf272be2ac2ea058419b8fbbe983c71689573a7c8c969d2dab33cb12832d545": 1,
+              "c59faf99b535f8f7e080b746080ebfce60c7abe8a09164554b49bded90aaa280": 1,
+              "2ef2b96a92ece262764425debdade1e01a3e0eb523aeb9a0a66e5edcd2dcbdff": 1,
+              "8a86f60e69883dd7f5ac8400fe9c5628dca0ba5e9124567c03eaeff3bfc2457f": 1,
+              "cf4d3bb136a73a98eae1b87febb5a6d99acfbe33b37cc3615526c05b55827dff": 1,
+              "e8698f8f6dcf4b0bb2fb1cee14279cd537ccaaa3265aacff1c4430d01a65d678": 1,
+              "cb5f3ac15b9abb89a5bb8b429f92eb4c4b6f0fc1a6b614b46d86f7ab62ebd0ee": 1,
+              "e26faac865a6ff33fa356b10b9e6d101dc12e465e7363d40d062363996f9b816": 1,
+              "ed0266c59288cacde0f962b02936469d4749c214d6c87378793b4d94f2045b37": 1,
+              "fb569e14321a80295b1dda77ad3534beb4380c789425779dba6de2ce94a15f86": 1,
+              "c44963586536a32ace6a6c5cb60e4881d3e8ee96c972ed1498f8d91f19d1d472": 1,
+              "11a8a59da821ed69029505b4a7ad8a076f1a02aa1574fe8eef45091451810282": 1,
+              "d2bc0253facc67a1a0677e32e46c40710d9e828722b8e2a88f829dd8d00ebf6a": 1,
+              "451222e3fbb48513aad6a5e6e276e81ccf113dd41cc0a6f32202354bfd163d41": 1,
+              "3d06309088154268e061f386a36d61ecb1acc728e5c3ebec7715767a5fa4fe3a": 1,
+              "b437ac5b8520d6eeac3e7b73b81b153be4fd2c2a2f1e655703738fdea6803a75": 1,
+              "795c9fa816d629964d416585ba5f6b9583032a7872a1facd7eef3087fefc5504": 1,
+              "4e0f1a475b0338cf61d4f55ecf21bf885254e907bd1cdb6ffa1af294d28306c8": 1
+            }
+          },
+          "source_benchmark": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "openhermes/teknium": 203,
+              "TIGER-Lab/MMLU-Pro": 143,
+              "lighteval/MATH/all": 97,
+              "lighteval/MATH/all/test": 27,
+              "Idavidrein/gpqa/gpqa_extended": 5,
+              "TAUR-Lab/MuSR": 4,
+              "rungalileo/ragbench/cuad": 4,
+              "rungalileo/ragbench/expertqa": 3,
+              "TAUR-Lab/MuSR/object_placements": 3,
+              "TAUR-Lab/MuSR/team_allocation": 3,
+              "rungalileo/ragbench/techqa": 2,
+              "rungalileo/ragbench/hotpotqa": 2,
+              "rungalileo/ragbench/pubmedqa": 1,
+              "rungalileo/ragbench/hagrid": 1,
+              "rungalileo/ragbench/covidqa": 1,
+              "rungalileo/ragbench/delucionqa": 1
+            }
+          },
+          "task_domain": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "general_instruction": 203,
+              "multitask_knowledge": 143,
+              "math_reasoning": 124,
+              "enterprise_rag": 15,
+              "multistep_deduction": 10,
+              "graduate_science_qa": 5
+            }
+          },
+          "agent_role": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "planner": 197,
+              "profiler": 133,
+              "validator": 124,
+              "coder": 40,
+              "summarizer": 6
+            }
+          },
+          "difficulty_tag": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "standard": 376,
+              "Level 5": 41,
+              "Level 3": 26,
+              "Level 4": 26,
+              "Level 1": 16,
+              "Level 2": 15
+            }
+          },
+          "prompt_tokens": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 94676.0,
+            "sumsq": 167669216.0,
+            "min": 15.0,
+            "max": 8583.0
+          },
+          "prompt_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 61064.0,
+            "sumsq": 67950106.0,
+            "min": 2.0,
+            "max": 4749.0
+          },
+          "prompt_chars": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 385274.0,
+            "sumsq": 3170229470.0,
+            "min": 23.0,
+            "max": 34899.0
+          },
+          "prompt_lines": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 5474.0,
+            "sumsq": 1002362.0,
+            "min": 1.0,
+            "max": 805.0
+          },
+          "question_marks": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 410.0,
+            "sumsq": 1814.0,
+            "min": 0.0,
+            "max": 27.0
+          },
+          "code_fences": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 0.0,
+            "sumsq": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "math_symbols": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 6282.0,
+            "sumsq": 1479966.0,
+            "min": 0.0,
+            "max": 961.0
+          },
+          "digit_count": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 8302.0,
+            "sumsq": 2059408.0,
+            "min": 0.0,
+            "max": 1091.0
+          },
+          "uppercase_ratio": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 14.140899999999998,
+            "sumsq": 0.80508839,
+            "min": 0.004,
+            "max": 0.3677
+          },
+          "avg_word_length": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 3147.783,
+            "sumsq": 21475.217713,
+            "min": 3.293,
+            "max": 33.0
+          },
+          "golden_reference_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 71598.0,
+            "sumsq": 23388720.0,
+            "min": 1.0,
+            "max": 737.0
+          },
+          "fallback_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "None": 409,
+              "mid_tier_llama70b": 46,
+              "frontier_claude_gpt4o": 26,
+              "human_review_escalation": 19
+            }
+          },
+          "claude_sonnet_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 421.20000000000005,
+            "sumsq": 412.53999999999996,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 424.0,
+            "sumsq": 417.58,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama70b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 418.5,
+            "sumsq": 400.31,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_mini_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 402.8,
+            "sumsq": 395.58000000000004,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama8b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 350.8,
+            "sumsq": 337.24,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_frontier_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 465.9,
+            "sumsq": 461.73,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_mid_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 462.1,
+            "sumsq": 454.31,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_economy_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 458.3,
+            "sumsq": 453.27,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "frontier_advantage": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 7.6000000000000005,
+            "sumsq": 34.739999999999995,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "frontier_gain_over_mini": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 18.4,
+            "sumsq": 62.22,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "cost_per_1k_frontier_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 2494.693,
+            "sumsq": 19917.934707,
+            "min": 0.444,
+            "max": 33.421
+          },
+          "cost_per_1k_economy_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 47.852000000000004,
+            "sumsq": 7.153396000000001,
+            "min": 0.003,
+            "max": 0.526
+          },
+          "frontier_cost_multiplier": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 31276.85,
+            "sumsq": 2459615.8669,
+            "min": 9.04,
+            "max": 316.0
+          },
+          "high_compute_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 305.0,
+            "sumsq": 305.0,
+            "min": 0.0,
+            "max": 1.0
+          }
+        }
+      }
+    },
+    {
+      "shard_id": 2,
+      "n_rows": 500,
+      "output_dir": "artifacts\\avaloka-fleet\\sub-avaloka-02\\mission",
+      "verdict": "pass",
+      "max_safe_deployment_level": 1,
+      "manual_minutes": 963.0,
+      "cost_usd": 0.000209,
+      "model": null,
+      "partition_stats": {
+        "n_rows": 500,
+        "columns": {
+          "prompt_id": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "2794d37edd5f7efdb6f4d066926981be28de5cc56a396aa66aaa0810e96cb1aa": 1,
+              "8f4d89ee3c95276baa4f4329414bee4470c7d876502b78fc36b61219d2afd0e5": 1,
+              "3a98c0d88b6be0346a9773bbc968d8d84d0178e480bb6f6121c36c56c4a8b3a7": 1,
+              "bd76f2bd3e2b6f21231cdab0dcd5fbec0f1298ac79771b92ad99218144b4ad32": 1,
+              "3686901e303ac6df4daac8fb3501bff96ffe52bf157fa8e915a16a1be6faace9": 1,
+              "d5b972e95d105edb91d8179e421a61b38211c3b8e127512b60c13c647c8822d0": 1,
+              "08a8e0be038bd106510bd4bc802f05ddc25e56d5ee03c0351bf815f7f7c414ae": 1,
+              "6b53ad40e56c3282a08727518b738fafef2c2611ce9561572b2d491ed326377f": 1,
+              "6306e6c4fe05eb75e525ead5e18dd6ff6aa35f6534b083e3ce0233c173dd5e94": 1,
+              "96e40d4f5e10a433b4909db6570495b5abb18e03f989523ecccb56ed8118170b": 1,
+              "2a93594bccd2b71bb041ab767367dc5ecab533c8205f37c0524dd5b3beb00945": 1,
+              "72513f0b23391456b9cd3d43c6026e040b76c31eb0698ee8d1bf12f58a4f880a": 1,
+              "81e30b9e12c8cddd6eb47a176e2bfecf95cf46169902937d81c1ca43364646ff": 1,
+              "6899d9890ba35a22197b05ba7fcc41d72cf77ffda452ffb5e4daf48ded1cfbc1": 1,
+              "b675021f1ecbf429cef4b49c27e99075a48a1067db08a4ff6a99f170cb0a94b7": 1,
+              "83a5529f2eb58b577e3261289ad39a5e615956c83ada5c3da667af040e4f0a48": 1,
+              "32b75c56ac768e20647d9ece6879480dfc69f69dd24c2f9109d09b7b808dd77b": 1,
+              "496ec3beabf24e5a4bd4b6784fb1bf70e4599f49f8eff125f35894dd64f67300": 1,
+              "bf24ed9a0fc1fcc4c0303f0f72ccb9c41e750d023af074bc2da3a76db20d5552": 1,
+              "d809b81fbd13c0489c0416d1d36ab2b0dcf7ca06a4cb74a728525fef7b2ab923": 1
+            }
+          },
+          "source_benchmark": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "openhermes/teknium": 228,
+              "TIGER-Lab/MMLU-Pro": 127,
+              "lighteval/MATH/all": 86,
+              "lighteval/MATH/all/test": 26,
+              "Idavidrein/gpqa/gpqa_extended": 6,
+              "rungalileo/ragbench/hotpotqa": 4,
+              "rungalileo/ragbench/hagrid": 3,
+              "TAUR-Lab/MuSR": 3,
+              "TAUR-Lab/MuSR/object_placements": 3,
+              "rungalileo/ragbench/covidqa": 3,
+              "rungalileo/ragbench/msmarco": 3,
+              "rungalileo/ragbench/pubmedqa": 2,
+              "rungalileo/ragbench/delucionqa": 1,
+              "rungalileo/ragbench/expertqa": 1,
+              "rungalileo/ragbench/finqa": 1,
+              "rungalileo/ragbench/emanual": 1,
+              "rungalileo/ragbench/cuad": 1,
+              "rungalileo/ragbench/techqa": 1
+            }
+          },
+          "task_domain": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "general_instruction": 228,
+              "multitask_knowledge": 127,
+              "math_reasoning": 112,
+              "enterprise_rag": 21,
+              "graduate_science_qa": 6,
+              "multistep_deduction": 6
+            }
+          },
+          "agent_role": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "planner": 211,
+              "profiler": 115,
+              "validator": 113,
+              "coder": 48,
+              "summarizer": 13
+            }
+          },
+          "difficulty_tag": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "standard": 388,
+              "Level 4": 32,
+              "Level 5": 31,
+              "Level 3": 27,
+              "Level 2": 19,
+              "Level 1": 3
+            }
+          },
+          "prompt_tokens": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 85194.0,
+            "sumsq": 135771650.0,
+            "min": 16.0,
+            "max": 7511.0
+          },
+          "prompt_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 53670.0,
+            "sumsq": 59801334.0,
+            "min": 2.0,
+            "max": 5796.0
+          },
+          "prompt_chars": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 338242.0,
+            "sumsq": 2623154674.0,
+            "min": 31.0,
+            "max": 37338.0
+          },
+          "prompt_lines": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 4621.0,
+            "sumsq": 469817.0,
+            "min": 1.0,
+            "max": 572.0
+          },
+          "question_marks": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 369.0,
+            "sumsq": 1029.0,
+            "min": 0.0,
+            "max": 22.0
+          },
+          "code_fences": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 0.0,
+            "sumsq": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "math_symbols": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 5332.0,
+            "sumsq": 875090.0,
+            "min": 0.0,
+            "max": 767.0
+          },
+          "digit_count": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 8654.0,
+            "sumsq": 2067334.0,
+            "min": 0.0,
+            "max": 1030.0
+          },
+          "uppercase_ratio": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 14.070799999999998,
+            "sumsq": 0.7646405199999999,
+            "min": 0.0005,
+            "max": 0.3566
+          },
+          "avg_word_length": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 3165.037,
+            "sumsq": 21527.975643,
+            "min": 3.587,
+            "max": 24.951
+          },
+          "golden_reference_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 77214.0,
+            "sumsq": 25086382.0,
+            "min": 1.0,
+            "max": 855.0
+          },
+          "fallback_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "None": 427,
+              "mid_tier_llama70b": 31,
+              "human_review_escalation": 23,
+              "frontier_claude_gpt4o": 19
+            }
+          },
+          "claude_sonnet_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 417.20000000000005,
+            "sumsq": 408.4200000000001,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 433.1,
+            "sumsq": 425.17,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama70b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 406.0,
+            "sumsq": 387.28000000000003,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_mini_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 420.20000000000005,
+            "sumsq": 412.66,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama8b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 350.8,
+            "sumsq": 335.4800000000001,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_frontier_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 466.3,
+            "sumsq": 460.49,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_mid_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 467.0,
+            "sumsq": 457.72,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_economy_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 463.70000000000005,
+            "sumsq": 456.89,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "frontier_advantage": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 2.6000000000000005,
+            "sumsq": 22.46,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "frontier_gain_over_mini": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": -3.0000000000000018,
+            "sumsq": 65.5,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "cost_per_1k_frontier_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 2435.56,
+            "sumsq": 18323.057982,
+            "min": 0.506,
+            "max": 31.109
+          },
+          "cost_per_1k_economy_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 44.449,
+            "sumsq": 5.919963000000001,
+            "min": 0.005,
+            "max": 0.441
+          },
+          "frontier_cost_multiplier": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 32305.440000000002,
+            "sumsq": 2744531.3792,
+            "min": 15.81,
+            "max": 446.03
+          },
+          "high_compute_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 312.0,
+            "sumsq": 312.0,
+            "min": 0.0,
+            "max": 1.0
+          }
+        }
+      }
+    },
+    {
+      "shard_id": 3,
+      "n_rows": 500,
+      "output_dir": "artifacts\\avaloka-fleet\\sub-avaloka-03\\mission",
+      "verdict": "pass",
+      "max_safe_deployment_level": 1,
+      "manual_minutes": 963.0,
+      "cost_usd": 0.000253,
+      "model": null,
+      "partition_stats": {
+        "n_rows": 500,
+        "columns": {
+          "prompt_id": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "4a3342ea2b11d5cfcdf127b9a3fd6014c8fb93e8c8c81b96493fe32e5f4abd61": 1,
+              "c199650e9e7d03b84d2a9d5f4ceee723ff7e4465c7b11110cdbd27316d26157f": 1,
+              "5ee75d48e6f211123efdb597d6d256ba8a066408c24e202ba907d1aef0069dc9": 1,
+              "bace8038744b09f4293dcc2540c410b0d41481dfadc0a33a99dd6aaf38b4824f": 1,
+              "711f10e507c89d98c2e14f7264e8b7474cf8727e27583a1fbc320523d664d03b": 1,
+              "07b60eca29218ecc49717afa0336b4432180b4be000cb110fcfc558c69e74259": 1,
+              "b671581bb0b29c34a66aa21a93d0e6a7e80098f0eda3703e3af6cff6c8a7b5b8": 1,
+              "cbfe18c399ac390b149d710ba6e5f721c92ea0ae74660a2e578d4830748fd07f": 1,
+              "6c1aa96a64fa076da84cf715578ae51a0a5be7a401794159f3d2eb5967b540d2": 1,
+              "9f9b2d41374086545f8951554e97e13be92c7925d298441655b5dcf49c4b37d4": 1,
+              "1397d72c2ba13360be1dcf4c85cf9b20cc5725c0077b024b1f6eeec4e74b5ef6": 1,
+              "e76c44cd7bf898b20e3d6181d7a07f405c60a87548a2c1cb623c5482fd1afb24": 1,
+              "d3f8bb8be06686a894eb55030070bad14c6dae280d09196c7cd088cbebed9015": 1,
+              "9d330053fe977bd4e4e41fbcbeda841f48c9c476d5d552978310851e39f11ab6": 1,
+              "2496727209b1e330a49a4ee6cd7e70e78b8777a17981fa018a8cec2212b9e7a2": 1,
+              "aca515140c75171a85bcd09e4571e3128c6c677c45dea43be2290f3e56cfc9bd": 1,
+              "901e336158fe175c4d9b38ba80f6c77c9cd2b93b9715625e4cc97c0099d9b421": 1,
+              "d8b8206a35f9fa1e36f5fa9c061ae8b5c26ff2178a1c546c04f6d41ea8219f16": 1,
+              "5bf4b86ed78647e70cbf3d52c954d4f2b36bc729972878c1b1cafea685809325": 1,
+              "860479e8cf6a7641b039da6ffaec3513e4a36b72deaead09d35e3643077e133a": 1
+            }
+          },
+          "source_benchmark": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "openhermes/teknium": 219,
+              "TIGER-Lab/MMLU-Pro": 136,
+              "lighteval/MATH/all": 65,
+              "lighteval/MATH/all/test": 28,
+              "Idavidrein/gpqa/gpqa_extended": 10,
+              "TAUR-Lab/MuSR": 7,
+              "rungalileo/ragbench/cuad": 7,
+              "rungalileo/ragbench/covidqa": 6,
+              "TAUR-Lab/MuSR/object_placements": 6,
+              "rungalileo/ragbench/expertqa": 5,
+              "rungalileo/ragbench/hagrid": 4,
+              "rungalileo/ragbench/msmarco": 2,
+              "rungalileo/ragbench/delucionqa": 2,
+              "rungalileo/ragbench/pubmedqa": 1,
+              "rungalileo/ragbench/finqa": 1,
+              "rungalileo/ragbench/hotpotqa": 1
+            }
+          },
+          "task_domain": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "general_instruction": 219,
+              "multitask_knowledge": 136,
+              "math_reasoning": 93,
+              "enterprise_rag": 29,
+              "multistep_deduction": 13,
+              "graduate_science_qa": 10
+            }
+          },
+          "agent_role": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "planner": 210,
+              "profiler": 132,
+              "validator": 99,
+              "coder": 43,
+              "summarizer": 16
+            }
+          },
+          "difficulty_tag": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "standard": 407,
+              "Level 5": 26,
+              "Level 3": 24,
+              "Level 4": 19,
+              "Level 2": 15,
+              "Level 1": 9
+            }
+          },
+          "prompt_tokens": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 120210.0,
+            "sumsq": 296538132.0,
+            "min": 15.0,
+            "max": 10435.0
+          },
+          "prompt_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 84471.0,
+            "sumsq": 170113501.0,
+            "min": 2.0,
+            "max": 7744.0
+          },
+          "prompt_chars": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 533368.0,
+            "sumsq": 7058616448.0,
+            "min": 24.0,
+            "max": 50150.0
+          },
+          "prompt_lines": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 5127.0,
+            "sumsq": 249569.0,
+            "min": 1.0,
+            "max": 270.0
+          },
+          "question_marks": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 373.0,
+            "sumsq": 773.0,
+            "min": 0.0,
+            "max": 13.0
+          },
+          "code_fences": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 0.0,
+            "sumsq": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "math_symbols": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 5014.0,
+            "sumsq": 453108.0,
+            "min": 0.0,
+            "max": 352.0
+          },
+          "digit_count": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 7863.0,
+            "sumsq": 1054085.0,
+            "min": 0.0,
+            "max": 558.0
+          },
+          "uppercase_ratio": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 13.8209,
+            "sumsq": 0.68140893,
+            "min": 0.0004,
+            "max": 0.1884
+          },
+          "avg_word_length": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 3194.7450000000003,
+            "sumsq": 23481.596523,
+            "min": 3.967,
+            "max": 47.0
+          },
+          "golden_reference_words": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 74828.0,
+            "sumsq": 24942186.0,
+            "min": 1.0,
+            "max": 652.0
+          },
+          "fallback_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": false,
+            "top": {
+              "None": 407,
+              "mid_tier_llama70b": 37,
+              "frontier_claude_gpt4o": 30,
+              "human_review_escalation": 26
+            }
+          },
+          "claude_sonnet_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 415.80000000000007,
+            "sumsq": 409.26,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 421.0,
+            "sumsq": 413.68000000000006,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama70b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 391.80000000000007,
+            "sumsq": 371.96000000000004,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "gpt4o_mini_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 401.2,
+            "sumsq": 393.9800000000001,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "llama8b_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 334.9,
+            "sumsq": 321.73,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_frontier_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 461.0,
+            "sumsq": 456.06000000000006,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_mid_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 448.1,
+            "sumsq": 438.99,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "best_economy_score": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 447.5,
+            "sumsq": 442.71000000000004,
+            "min": 0.0,
+            "max": 1.0
+          },
+          "frontier_advantage": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 13.5,
+            "sumsq": 47.89,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "frontier_gain_over_mini": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 14.600000000000001,
+            "sumsq": 69.34,
+            "min": -1.0,
+            "max": 1.0
+          },
+          "cost_per_1k_frontier_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 2406.384,
+            "sumsq": 16281.989908,
+            "min": 0.671,
+            "max": 32.498
+          },
+          "cost_per_1k_economy_usd": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 49.289,
+            "sumsq": 8.678759,
+            "min": 0.005,
+            "max": 1.046
+          },
+          "frontier_cost_multiplier": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 30585.33,
+            "sumsq": 2341582.1947,
+            "min": 5.98,
+            "max": 332.64
+          },
+          "high_compute_route": {
+            "missing": 0,
+            "count": 500,
+            "is_numeric": true,
+            "sum": 293.0,
+            "sumsq": 293.0,
+            "min": 0.0,
+            "max": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "output_dir": "artifacts\\avaloka-fleet"
+}

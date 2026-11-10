@@ -1,0 +1,11 @@
+artifact_path: model
+flavors:
+  python_function:
+    loader_module: mlflow.sklearn
+    model_path: ../model/model.pkl
+    python_version: 3.12.10
+run_id: 0ee49c7e6145
+avaloka:
+  task: binary_classification
+  metric: roc_auc
+  selected: random_forest

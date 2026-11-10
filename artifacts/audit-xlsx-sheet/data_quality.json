@@ -1,0 +1,208 @@
+{
+  "dataset": {
+    "source": "data\\sprout_multi_sheet_audit.xlsx",
+    "format": "excel",
+    "sha256": "872378db8fbee64476c27d7ef4028426f9ff2bcdc6d2184cc6d0c87eb534b014",
+    "n_rows": 400,
+    "n_cols": 5,
+    "delimiter": null
+  },
+  "columns": [
+    {
+      "name": "prompt_id",
+      "dtype": "object",
+      "role": "id",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 400,
+      "unique_pct": 1.0,
+      "top_values": [
+        {
+          "value": "d645f15ac20b8c56f581ace2129baefa5baf6c027b688a06e4b61df9edac332f",
+          "count": 1
+        },
+        {
+          "value": "cab46262756d18245c49fe4301735f94eb12e64d3cd9be29eb2ea68617bd0585",
+          "count": 1
+        },
+        {
+          "value": "29ce0b2c2f23afd5ab2d5bf07a0afea58a7bb208240db9f7ac4c5dacb1648c3e",
+          "count": 1
+        },
+        {
+          "value": "f63c5dbca7f6ded8a55b2d4f186695e77cc7235f96d02f38c43c3aa19c5897d1",
+          "count": 1
+        },
+        {
+          "value": "9fe3250069f9cc4c874411ff183c68c6851299090dfbb3806c456a7d54c5c4bf",
+          "count": 1
+        },
+        {
+          "value": "d2d753fa2b2a70f3279123a15bfc760f7e81fa4224dffa74619000bed9724610",
+          "count": 1
+        },
+        {
+          "value": "a452f4a30d23d9d433b1c181078106fe60b06184aa87e931ea39568ebfc2ea6f",
+          "count": 1
+        },
+        {
+          "value": "5dd6370fd968bc01310ca7dd48f67bd1896ff1d47c5420891fecbd7785735376",
+          "count": 1
+        },
+        {
+          "value": "61f5c739c6984c16ffb2be7d55455d744a90e6b806bf4015c1b7ba0a6a405e67",
+          "count": 1
+        },
+        {
+          "value": "a018609be0ad127e651b035399b0aa01f5d8634f7fb2870fe08e3e1f086253a5",
+          "count": 1
+        }
+      ],
+      "sample_values": [
+        "d645f15ac20b8c56f581ace2129baefa5baf6c027b688a06e4b61df9edac332f",
+        "cab46262756d18245c49fe4301735f94eb12e64d3cd9be29eb2ea68617bd0585",
+        "29ce0b2c2f23afd5ab2d5bf07a0afea58a7bb208240db9f7ac4c5dacb1648c3e",
+        "f63c5dbca7f6ded8a55b2d4f186695e77cc7235f96d02f38c43c3aa19c5897d1",
+        "9fe3250069f9cc4c874411ff183c68c6851299090dfbb3806c456a7d54c5c4bf"
+      ]
+    },
+    {
+      "name": "prompt_tokens",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 196,
+      "unique_pct": 0.49,
+      "stats": {
+        "min": 13.0,
+        "max": 6822.0,
+        "mean": 170.15,
+        "median": 71.0,
+        "std": 488.103313,
+        "p25": 38.0,
+        "p75": 167.0,
+        "skew": 11.5104,
+        "n_outliers": 35
+      },
+      "sample_values": [
+        181,
+        40,
+        220,
+        31,
+        67
+      ]
+    },
+    {
+      "name": "prompt_words",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 168,
+      "unique_pct": 0.42,
+      "stats": {
+        "min": 2.0,
+        "max": 4608.0,
+        "mean": 105.715,
+        "median": 41.0,
+        "std": 291.163527,
+        "p25": 22.0,
+        "p75": 96.25,
+        "skew": 11.2037,
+        "n_outliers": 37
+      },
+      "sample_values": [
+        138,
+        31,
+        153,
+        20,
+        36
+      ]
+    },
+    {
+      "name": "prompt_chars",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 306,
+      "unique_pct": 0.765,
+      "stats": {
+        "min": 20.0,
+        "max": 30210.0,
+        "mean": 673.14,
+        "median": 252.0,
+        "std": 2101.674163,
+        "p25": 134.75,
+        "p75": 580.5,
+        "skew": 11.2408,
+        "n_outliers": 38
+      },
+      "sample_values": [
+        770,
+        202,
+        903,
+        130,
+        203
+      ]
+    },
+    {
+      "name": "digit_count",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 77,
+      "unique_pct": 0.1925,
+      "stats": {
+        "min": 0.0,
+        "max": 1121.0,
+        "mean": 17.2725,
+        "median": 3.0,
+        "std": 63.906089,
+        "p25": 0.0,
+        "p75": 13.25,
+        "skew": 13.6224,
+        "n_outliers": 57
+      },
+      "sample_values": [
+        0,
+        0,
+        0,
+        0,
+        12
+      ]
+    }
+  ],
+  "quality": {
+    "score": 100,
+    "n_rows": 400,
+    "n_cols": 5,
+    "duplicate_rows": 0,
+    "constant_columns": [],
+    "high_missing_columns": [],
+    "high_cardinality_columns": [],
+    "id_columns": [
+      "prompt_id"
+    ],
+    "issues": []
+  },
+  "correlations": [
+    {
+      "a": "prompt_tokens",
+      "b": "prompt_chars",
+      "corr": 0.9876
+    },
+    {
+      "a": "prompt_words",
+      "b": "prompt_chars",
+      "corr": 0.9811
+    },
+    {
+      "a": "prompt_tokens",
+      "b": "prompt_words",
+      "corr": 0.946
+    }
+  ]
+}

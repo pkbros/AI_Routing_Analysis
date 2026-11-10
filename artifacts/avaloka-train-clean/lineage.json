@@ -1,0 +1,171 @@
+{
+  "mission_id": "0ee49c7e6145",
+  "kind": "train",
+  "started_at_epoch": 1794323095.6438644,
+  "source": {
+    "path": "data\\sprout_pre_execution_routing.csv",
+    "sha256": "7aeefbb55e022c1ac7941ba2dd7308d81f528ac22fb519867f5f59dd982afa57",
+    "format": "csv"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "machine": "AMD64",
+    "avaloka_mission_id": "0ee49c7e6145"
+  },
+  "transformations": [
+    {
+      "op": "drop_constant_columns",
+      "columns": [
+        "code_fences"
+      ]
+    },
+    {
+      "op": "strip_whitespace",
+      "columns": [
+        "prompt_id",
+        "source_benchmark",
+        "task_domain",
+        "agent_role",
+        "difficulty_tag"
+      ]
+    }
+  ],
+  "work_units": [
+    {
+      "firefly": "data_scout",
+      "human_role": "Data analyst",
+      "output": "Profiled 17 columns x 2000 rows; quality score 98/100 with 1 issues flagged.",
+      "manual_minutes": 147,
+      "compute_cost_usd": 7e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.1166,
+      "notes": "",
+      "metadata": {
+        "quality_score": 98,
+        "n_issues": 1
+      }
+    },
+    {
+      "firefly": "sampling_specialist",
+      "human_role": "Data scientist",
+      "output": "Working sample: 2,000 rows (none). 2,000 rows fits the live full-analysis lane; the full dataset is used so no information is discarded.",
+      "manual_minutes": 30.0,
+      "compute_cost_usd": 0.0,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0004,
+      "notes": "",
+      "metadata": {
+        "sampled": false,
+        "strategy": "none"
+      }
+    },
+    {
+      "firefly": "data_engineer",
+      "human_role": "Data engineer",
+      "output": "Applied 2 documented transformations; wrote transformed_dataset.parquet (2000x16) + reproducible analysis.py / analysis.ipynb.",
+      "manual_minutes": 226,
+      "compute_cost_usd": 6.2e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.1041,
+      "notes": "",
+      "metadata": {
+        "n_transformations": 2
+      }
+    },
+    {
+      "firefly": "analysis_planner",
+      "human_role": "Senior data scientist",
+      "output": "Planned task='binary_classification' with 3 candidate(s); split='stratified_train_test'; 2 human approval gate(s).",
+      "manual_minutes": 60.0,
+      "compute_cost_usd": 2e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0031,
+      "notes": "",
+      "metadata": {
+        "task": "binary_classification",
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "model_scientist",
+      "human_role": "ML scientist",
+      "output": "Trained 3 candidate(s); selected 'random_forest' (roc_auc=0.9560).",
+      "manual_minutes": 450,
+      "compute_cost_usd": 0.006328,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 10.5474,
+      "notes": "",
+      "metadata": {
+        "selected": "random_forest",
+        "score": 0.956,
+        "n_candidates": 3
+      }
+    },
+    {
+      "firefly": "validator",
+      "human_role": "Model-risk specialist",
+      "output": "Validation verdict='pass'; 6 checks; max safe deployment level 4.",
+      "manual_minutes": 128,
+      "compute_cost_usd": 1.3e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0217,
+      "notes": "",
+      "metadata": {
+        "verdict": "pass",
+        "max_level": 4
+      }
+    },
+    {
+      "firefly": "finops",
+      "human_role": "Infrastructure engineer",
+      "output": "Cost-quality analysis across 3 candidate(s); recommended 'Economical'.",
+      "manual_minutes": 45.0,
+      "compute_cost_usd": 1e-06,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.0016,
+      "notes": "",
+      "metadata": {
+        "recommended": "Economical"
+      }
+    },
+    {
+      "firefly": "ml_engineer",
+      "human_role": "ML platform engineer",
+      "output": "Generated Level-2 deployment package: service.py, Dockerfile, inference schema, feature contract, tests, monitoring + k8s/ray/compose manifests.",
+      "manual_minutes": 360.0,
+      "compute_cost_usd": 6.8e-05,
+      "model_cost_usd": 0.0,
+      "duration_seconds": 0.1139,
+      "notes": "",
+      "metadata": {
+        "artifacts": [
+          "service.py",
+          "Dockerfile",
+          "deployment/"
+        ]
+      }
+    }
+  ],
+  "outputs": [
+    "Dockerfile",
+    "analysis.ipynb",
+    "analysis.py",
+    "assumptions.yaml",
+    "cost_quality.json",
+    "data_quality.json",
+    "evaluation_report.html",
+    "executive_report.html",
+    "feature_contract.yaml",
+    "inference_schema.json",
+    "model_card.md",
+    "monitoring_config.yaml",
+    "planner_graph.json",
+    "requirements.lock",
+    "service.py",
+    "technical_report.html",
+    "transformed_dataset.parquet",
+    "validation_report.json",
+    "workload.json"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "goal": "average best_frontier_score by task_domain",
+  "kind": "dataset_overview",
+  "status": "limited",
+  "scope": "All 400 working rows",
+  "columns": [],
+  "metrics": {},
+  "findings": [
+    "This goal does not map to a supported goal-specific calculation. The remaining report is a general dataset profile, not an answer to the question."
+  ]
+}

@@ -1,0 +1,987 @@
+{
+  "dataset": {
+    "source": "artifacts\\avaloka-fleet\\sub-avaloka-02\\shard.csv",
+    "format": "csv",
+    "sha256": "31bca874406167e1156fa062080ee917370ad047bc690dc226791588a1c7dfd5",
+    "n_rows": 500,
+    "n_cols": 31,
+    "delimiter": ","
+  },
+  "columns": [
+    {
+      "name": "prompt_id",
+      "dtype": "object",
+      "role": "id",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 500,
+      "unique_pct": 1.0,
+      "top_values": [
+        {
+          "value": "2794d37edd5f7efdb6f4d066926981be28de5cc56a396aa66aaa0810e96cb1aa",
+          "count": 1
+        },
+        {
+          "value": "8f4d89ee3c95276baa4f4329414bee4470c7d876502b78fc36b61219d2afd0e5",
+          "count": 1
+        },
+        {
+          "value": "3a98c0d88b6be0346a9773bbc968d8d84d0178e480bb6f6121c36c56c4a8b3a7",
+          "count": 1
+        },
+        {
+          "value": "bd76f2bd3e2b6f21231cdab0dcd5fbec0f1298ac79771b92ad99218144b4ad32",
+          "count": 1
+        },
+        {
+          "value": "3686901e303ac6df4daac8fb3501bff96ffe52bf157fa8e915a16a1be6faace9",
+          "count": 1
+        },
+        {
+          "value": "d5b972e95d105edb91d8179e421a61b38211c3b8e127512b60c13c647c8822d0",
+          "count": 1
+        },
+        {
+          "value": "08a8e0be038bd106510bd4bc802f05ddc25e56d5ee03c0351bf815f7f7c414ae",
+          "count": 1
+        },
+        {
+          "value": "6b53ad40e56c3282a08727518b738fafef2c2611ce9561572b2d491ed326377f",
+          "count": 1
+        },
+        {
+          "value": "6306e6c4fe05eb75e525ead5e18dd6ff6aa35f6534b083e3ce0233c173dd5e94",
+          "count": 1
+        },
+        {
+          "value": "96e40d4f5e10a433b4909db6570495b5abb18e03f989523ecccb56ed8118170b",
+          "count": 1
+        }
+      ],
+      "sample_values": [
+        "2794d37edd5f7efdb6f4d066926981be28de5cc56a396aa66aaa0810e96cb1aa",
+        "8f4d89ee3c95276baa4f4329414bee4470c7d876502b78fc36b61219d2afd0e5",
+        "3a98c0d88b6be0346a9773bbc968d8d84d0178e480bb6f6121c36c56c4a8b3a7",
+        "bd76f2bd3e2b6f21231cdab0dcd5fbec0f1298ac79771b92ad99218144b4ad32",
+        "3686901e303ac6df4daac8fb3501bff96ffe52bf157fa8e915a16a1be6faace9"
+      ]
+    },
+    {
+      "name": "source_benchmark",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 18,
+      "unique_pct": 0.036,
+      "top_values": [
+        {
+          "value": "openhermes/teknium",
+          "count": 228
+        },
+        {
+          "value": "TIGER-Lab/MMLU-Pro",
+          "count": 127
+        },
+        {
+          "value": "lighteval/MATH/all",
+          "count": 86
+        },
+        {
+          "value": "lighteval/MATH/all/test",
+          "count": 26
+        },
+        {
+          "value": "Idavidrein/gpqa/gpqa_extended",
+          "count": 6
+        },
+        {
+          "value": "rungalileo/ragbench/hotpotqa",
+          "count": 4
+        },
+        {
+          "value": "rungalileo/ragbench/hagrid",
+          "count": 3
+        },
+        {
+          "value": "TAUR-Lab/MuSR",
+          "count": 3
+        },
+        {
+          "value": "TAUR-Lab/MuSR/object_placements",
+          "count": 3
+        },
+        {
+          "value": "rungalileo/ragbench/covidqa",
+          "count": 3
+        }
+      ],
+      "sample_values": [
+        "openhermes/teknium",
+        "openhermes/teknium",
+        "openhermes/teknium",
+        "openhermes/teknium",
+        "openhermes/teknium"
+      ]
+    },
+    {
+      "name": "task_domain",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 6,
+      "unique_pct": 0.012,
+      "top_values": [
+        {
+          "value": "general_instruction",
+          "count": 228
+        },
+        {
+          "value": "multitask_knowledge",
+          "count": 127
+        },
+        {
+          "value": "math_reasoning",
+          "count": 112
+        },
+        {
+          "value": "enterprise_rag",
+          "count": 21
+        },
+        {
+          "value": "graduate_science_qa",
+          "count": 6
+        },
+        {
+          "value": "multistep_deduction",
+          "count": 6
+        }
+      ],
+      "sample_values": [
+        "general_instruction",
+        "general_instruction",
+        "general_instruction",
+        "general_instruction",
+        "general_instruction"
+      ]
+    },
+    {
+      "name": "agent_role",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 5,
+      "unique_pct": 0.01,
+      "top_values": [
+        {
+          "value": "planner",
+          "count": 211
+        },
+        {
+          "value": "profiler",
+          "count": 115
+        },
+        {
+          "value": "validator",
+          "count": 113
+        },
+        {
+          "value": "coder",
+          "count": 48
+        },
+        {
+          "value": "summarizer",
+          "count": 13
+        }
+      ],
+      "sample_values": [
+        "planner",
+        "planner",
+        "planner",
+        "planner",
+        "planner"
+      ]
+    },
+    {
+      "name": "difficulty_tag",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 6,
+      "unique_pct": 0.012,
+      "top_values": [
+        {
+          "value": "standard",
+          "count": 388
+        },
+        {
+          "value": "Level 4",
+          "count": 32
+        },
+        {
+          "value": "Level 5",
+          "count": 31
+        },
+        {
+          "value": "Level 3",
+          "count": 27
+        },
+        {
+          "value": "Level 2",
+          "count": 19
+        },
+        {
+          "value": "Level 1",
+          "count": 3
+        }
+      ],
+      "sample_values": [
+        "standard",
+        "standard",
+        "standard",
+        "standard",
+        "standard"
+      ]
+    },
+    {
+      "name": "prompt_tokens",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 218,
+      "unique_pct": 0.436,
+      "stats": {
+        "min": 16.0,
+        "max": 7511.0,
+        "mean": 170.388,
+        "median": 63.5,
+        "std": 492.947486,
+        "p25": 35.0,
+        "p75": 153.0,
+        "skew": 11.2896,
+        "n_outliers": 52
+      },
+      "sample_values": [
+        32,
+        102,
+        70,
+        29,
+        35
+      ]
+    },
+    {
+      "name": "prompt_words",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 178,
+      "unique_pct": 0.356,
+      "stats": {
+        "min": 2.0,
+        "max": 5796.0,
+        "mean": 107.34,
+        "median": 38.0,
+        "std": 329.085684,
+        "p25": 21.0,
+        "p75": 90.25,
+        "skew": 12.379,
+        "n_outliers": 53
+      },
+      "sample_values": [
+        22,
+        82,
+        48,
+        16,
+        26
+      ]
+    },
+    {
+      "name": "prompt_chars",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 362,
+      "unique_pct": 0.724,
+      "stats": {
+        "min": 31.0,
+        "max": 37338.0,
+        "mean": 676.484,
+        "median": 229.5,
+        "std": 2190.496587,
+        "p25": 128.75,
+        "p75": 553.5,
+        "skew": 12.0962,
+        "n_outliers": 51
+      },
+      "sample_values": [
+        146,
+        484,
+        260,
+        89,
+        167
+      ]
+    },
+    {
+      "name": "prompt_lines",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 37,
+      "unique_pct": 0.074,
+      "stats": {
+        "min": 1.0,
+        "max": 572.0,
+        "mean": 9.242,
+        "median": 2.0,
+        "std": 29.256304,
+        "p25": 2.0,
+        "p75": 16.0,
+        "skew": 15.6919,
+        "n_outliers": 8
+      },
+      "sample_values": [
+        2,
+        3,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "question_marks",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 7,
+      "unique_pct": 0.014,
+      "stats": {
+        "min": 0.0,
+        "max": 22.0,
+        "mean": 0.738,
+        "median": 1.0,
+        "std": 1.231417,
+        "p25": 0.0,
+        "p75": 1.0,
+        "skew": 11.7781,
+        "n_outliers": 6
+      },
+      "sample_values": [
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "code_fences",
+      "dtype": "int64",
+      "role": "constant",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 1,
+      "unique_pct": 0.002,
+      "sample_values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "math_symbols",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 55,
+      "unique_pct": 0.11,
+      "stats": {
+        "min": 0.0,
+        "max": 767.0,
+        "mean": 10.664,
+        "median": 1.0,
+        "std": 40.493686,
+        "p25": 0.0,
+        "p75": 9.0,
+        "skew": 13.9698,
+        "n_outliers": 54
+      },
+      "sample_values": [
+        1,
+        0,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "digit_count",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 79,
+      "unique_pct": 0.158,
+      "stats": {
+        "min": 0.0,
+        "max": 1030.0,
+        "mean": 17.308,
+        "median": 3.0,
+        "std": 61.990215,
+        "p25": 0.0,
+        "p75": 13.0,
+        "skew": 11.5844,
+        "n_outliers": 68
+      },
+      "sample_values": [
+        0,
+        9,
+        16,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "uppercase_ratio",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 326,
+      "unique_pct": 0.652,
+      "stats": {
+        "min": 0.0005,
+        "max": 0.3566,
+        "mean": 0.028142,
+        "median": 0.02075,
+        "std": 0.027181,
+        "p25": 0.0105,
+        "p75": 0.036825,
+        "skew": 4.5897,
+        "n_outliers": 25
+      },
+      "sample_values": [
+        0.0137,
+        0.0186,
+        0.0154,
+        0.0449,
+        0.006
+      ]
+    },
+    {
+      "name": "avg_word_length",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 430,
+      "unique_pct": 0.86,
+      "stats": {
+        "min": 3.587,
+        "max": 24.951,
+        "mean": 6.330074,
+        "median": 6.129,
+        "std": 1.729768,
+        "p25": 5.54075,
+        "p75": 6.6377500000000005,
+        "skew": 5.8584,
+        "n_outliers": 28
+      },
+      "sample_values": [
+        6.636,
+        5.902,
+        5.417,
+        5.562,
+        6.423
+      ]
+    },
+    {
+      "name": "golden_reference_words",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 250,
+      "unique_pct": 0.5,
+      "stats": {
+        "min": 1.0,
+        "max": 855.0,
+        "mean": 154.428,
+        "median": 84.5,
+        "std": 162.411551,
+        "p25": 12.0,
+        "p75": 289.25,
+        "skew": 0.9287,
+        "n_outliers": 2
+      },
+      "sample_values": [
+        200,
+        187,
+        372,
+        3,
+        402
+      ]
+    },
+    {
+      "name": "fallback_route",
+      "dtype": "object",
+      "role": "categorical",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 4,
+      "unique_pct": 0.008,
+      "top_values": [
+        {
+          "value": "None",
+          "count": 427
+        },
+        {
+          "value": "mid_tier_llama70b",
+          "count": 31
+        },
+        {
+          "value": "human_review_escalation",
+          "count": 23
+        },
+        {
+          "value": "frontier_claude_gpt4o",
+          "count": 19
+        }
+      ],
+      "sample_values": [
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ]
+    },
+    {
+      "name": "claude_sonnet_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 5,
+      "unique_pct": 0.01,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8344,
+        "median": 1.0,
+        "std": 0.347647,
+        "p25": 0.9,
+        "p75": 1.0,
+        "skew": -1.9392,
+        "n_outliers": 73
+      },
+      "sample_values": [
+        0.8,
+        0.8,
+        0.8,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "gpt4o_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 6,
+      "unique_pct": 0.012,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8662,
+        "median": 1.0,
+        "std": 0.316604,
+        "p25": 0.9,
+        "p75": 1.0,
+        "skew": -2.3119,
+        "n_outliers": 60
+      },
+      "sample_values": [
+        0.9,
+        0.9,
+        0.8,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "llama70b_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 7,
+      "unique_pct": 0.014,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.812,
+        "median": 1.0,
+        "std": 0.339775,
+        "p25": 0.8,
+        "p75": 1.0,
+        "skew": -1.8438,
+        "n_outliers": 75
+      },
+      "sample_values": [
+        0.8,
+        1.0,
+        0.9,
+        1.0,
+        0.9
+      ]
+    },
+    {
+      "name": "gpt4o_mini_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 7,
+      "unique_pct": 0.014,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8404,
+        "median": 1.0,
+        "std": 0.345379,
+        "p25": 0.9,
+        "p75": 1.0,
+        "skew": -1.9736,
+        "n_outliers": 73
+      },
+      "sample_values": [
+        0.8,
+        1.0,
+        0.9,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "llama8b_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 6,
+      "unique_pct": 0.012,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.7016,
+        "median": 0.9,
+        "std": 0.423173,
+        "p25": 0.0,
+        "p75": 1.0,
+        "skew": -1.0014,
+        "n_outliers": 0
+      },
+      "sample_values": [
+        0.8,
+        0.0,
+        0.0,
+        1.0,
+        0.9
+      ]
+    },
+    {
+      "name": "best_frontier_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 6,
+      "unique_pct": 0.012,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9326,
+        "median": 1.0,
+        "std": 0.226583,
+        "p25": 1.0,
+        "p75": 1.0,
+        "skew": -3.7249,
+        "n_outliers": 78
+      },
+      "sample_values": [
+        0.9,
+        0.9,
+        0.8,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "best_mid_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 5,
+      "unique_pct": 0.01,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.934,
+        "median": 1.0,
+        "std": 0.207775,
+        "p25": 1.0,
+        "p75": 1.0,
+        "skew": -4.0393,
+        "n_outliers": 111
+      },
+      "sample_values": [
+        1.0,
+        1.0,
+        0.9,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "best_economy_score",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 7,
+      "unique_pct": 0.014,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9274,
+        "median": 1.0,
+        "std": 0.231985,
+        "p25": 1.0,
+        "p75": 1.0,
+        "skew": -3.5612,
+        "n_outliers": 86
+      },
+      "sample_values": [
+        0.9,
+        1.0,
+        0.9,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "frontier_advantage",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 11,
+      "unique_pct": 0.022,
+      "stats": {
+        "min": -1.0,
+        "max": 1.0,
+        "mean": 0.0052,
+        "median": 0.0,
+        "std": 0.212092,
+        "p25": 0.0,
+        "p75": 0.0,
+        "skew": 0.4327,
+        "n_outliers": 73
+      },
+      "sample_values": [
+        0.0,
+        -0.1,
+        -0.1,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "frontier_gain_over_mini",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 12,
+      "unique_pct": 0.024,
+      "stats": {
+        "min": -1.0,
+        "max": 1.0,
+        "mean": -0.006,
+        "median": 0.0,
+        "std": 0.362252,
+        "p25": 0.0,
+        "p75": 0.0,
+        "skew": -0.0012,
+        "n_outliers": 136
+      },
+      "sample_values": [
+        0.0,
+        -0.2,
+        -0.1,
+        -1.0,
+        0.0
+      ]
+    },
+    {
+      "name": "cost_per_1k_frontier_usd",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 471,
+      "unique_pct": 0.942,
+      "stats": {
+        "min": 0.506,
+        "max": 31.109,
+        "mean": 4.87112,
+        "median": 4.3795,
+        "std": 3.597804,
+        "p25": 2.79425,
+        "p75": 6.0095,
+        "skew": 4.3517,
+        "n_outliers": 12
+      },
+      "sample_values": [
+        1.985,
+        5.002,
+        4.535,
+        1.672,
+        7.444
+      ]
+    },
+    {
+      "name": "cost_per_1k_economy_usd",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 175,
+      "unique_pct": 0.35,
+      "stats": {
+        "min": 0.005,
+        "max": 0.441,
+        "mean": 0.088898,
+        "median": 0.079,
+        "std": 0.062809,
+        "p25": 0.049,
+        "p75": 0.104,
+        "skew": 2.089,
+        "n_outliers": 39
+      },
+      "sample_values": [
+        0.033,
+        0.207,
+        0.119,
+        0.01,
+        0.116
+      ]
+    },
+    {
+      "name": "frontier_cost_multiplier",
+      "dtype": "float64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 483,
+      "unique_pct": 0.966,
+      "stats": {
+        "min": 15.81,
+        "max": 446.03,
+        "mean": 64.61088,
+        "median": 59.525,
+        "std": 36.292302,
+        "p25": 48.465,
+        "p75": 72.9675,
+        "skew": 4.7245,
+        "n_outliers": 25
+      },
+      "sample_values": [
+        60.15,
+        24.16,
+        38.11,
+        167.2,
+        64.17
+      ]
+    },
+    {
+      "name": "high_compute_route",
+      "dtype": "int64",
+      "role": "numeric",
+      "missing": 0,
+      "missing_pct": 0.0,
+      "n_unique": 2,
+      "unique_pct": 0.004,
+      "stats": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.624,
+        "median": 1.0,
+        "std": 0.484865,
+        "p25": 0.0,
+        "p75": 1.0,
+        "skew": -0.5135,
+        "n_outliers": 0
+      },
+      "sample_values": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ]
+    }
+  ],
+  "quality": {
+    "score": 98,
+    "n_rows": 500,
+    "n_cols": 31,
+    "duplicate_rows": 0,
+    "constant_columns": [
+      "code_fences"
+    ],
+    "high_missing_columns": [],
+    "high_cardinality_columns": [],
+    "id_columns": [
+      "prompt_id"
+    ],
+    "issues": [
+      {
+        "severity": "low",
+        "column": "code_fences",
+        "kind": "constant_column",
+        "detail": "Column has a single value; no predictive content."
+      }
+    ]
+  },
+  "correlations": [
+    {
+      "a": "prompt_words",
+      "b": "prompt_chars",
+      "corr": 0.9944
+    },
+    {
+      "a": "prompt_tokens",
+      "b": "prompt_chars",
+      "corr": 0.9829
+    },
+    {
+      "a": "prompt_tokens",
+      "b": "prompt_words",
+      "corr": 0.9634
+    }
+  ]
+}

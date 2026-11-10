@@ -1,0 +1,29 @@
+{
+  "upstream_dataset": "CARROT-LLM-Routing/SPROUT",
+  "upstream_url": "https://huggingface.co/datasets/CARROT-LLM-Routing/SPROUT",
+  "split": "test",
+  "rows_extracted": 2000,
+  "models_evaluated_per_prompt": 13,
+  "files": {
+    "sprout_llm_routing.csv": {
+      "rows": 2000,
+      "cols": 31,
+      "sha256": "865de4fa66e2810a41c1f27845b0b69a09a4b5b0bd4e6d0bbb179138855ce1cc"
+    },
+    "sprout_llm_routing.parquet": {
+      "rows": 2000,
+      "cols": 31,
+      "sha256": "0467884053cc021e2b414c696d4f3dc3d5415e933a2d5d034023f4b102b9073b"
+    },
+    "sprout_pre_execution_routing.csv": {
+      "rows": 2000,
+      "cols": 17,
+      "sha256": "7aeefbb55e022c1ac7941ba2dd7308d81f528ac22fb519867f5f59dd982afa57"
+    },
+    "sprout_llm_routing_leaky.csv": {
+      "rows": 2000,
+      "cols": 32,
+      "sha256": "fa077e97d27d2babb69ca54d18e18b96ba5eec799c20ae5eec08f1789665d79a"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: avaloka-0ee49c7e
+    labels:
+      app: avaloka-0ee49c7e
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: avaloka-0ee49c7e
+    template:
+      metadata:
+        labels:
+          app: avaloka-0ee49c7e
+      spec:
+        containers:
+        - name: inference
+          image: avaloka-0ee49c7e:latest
+          ports:
+          - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: '1'
+              memory: 1Gi
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: avaloka-0ee49c7e
+  spec:
+    selector:
+      app: avaloka-0ee49c7e
+    ports:
+    - port: 80
+      targetPort: 8080

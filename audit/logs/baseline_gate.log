@@ -1,0 +1,104 @@
+Avaloka  Hi, I'm Avaloka — your data scientist. Point me at a dataset and tell 
+me the decision you're trying to make, and I'll take it from there.
+Avaloka  This one's compact — 2,000 rows. I'll analyse the whole thing live, 
+right now, nothing held back.
+Avaloka  Let me look… 2,000 rows across several columns. Give me a second to 
+really see it.
+Avaloka  Cloning myself into 8 focused copies — each takes the part she's best 
+at.
+  ✦ Ava-Scout sets off — she reads the schema, the distributions and the 
+cracks.
+    ↩ Ava-Scout returns: Profiled 17 columns x 2000 rows; quality score 98/100 
+with 1 issues flagged.
+  ✦ Ava-Sampler sets off — she carves out a sample that still tells the truth.
+    ↩ Ava-Sampler returns: Working sample: 2,000 rows (none). 2,000 rows fits 
+the live full-analysis lane; the full dataset is used so no information is 
+discarded.
+  ✦ Ava-Engineer sets off — she cleans and writes the pipeline so it's 
+reproducible.
+    ↩ Ava-Engineer returns: Applied 2 documented transformations; wrote 
+transformed_dataset.parquet (2000x16) + reproducible analysis.py / 
+analysis.ipynb.
+  ✦ Ava-Planner sets off — she decides the task, the split and what's worth 
+computing.
+    ↩ Ava-Planner returns: Planned task='binary_classification' with 3 
+candidate(s); split='stratified_train_test'; 2 human approval gate(s).
+  ✦ Ava-Scientist sets off — she trains the contenders and picks the one to 
+trust.
+    ↩ Ava-Scientist returns: Trained 3 candidate(s); selected 'random_forest' 
+(roc_auc=0.9560).
+  ✦ Ava-Skeptic sets off — she tries to break the result before anyone else 
+can.
+    ↩ Ava-Skeptic returns: Validation verdict='pass'; 6 checks; max safe 
+deployment level 4.
+  ✦ Ava-FinOps sets off — she weighs every extra dollar of compute against the 
+quality it buys.
+    ↩ Ava-FinOps returns: Cost-quality analysis across 3 candidate(s); 
+recommended 'Economical'.
+  ✦ Ava-Voice sets off — she writes it all up the way you'd want to read it.
+    ↩ Ava-Voice returns: Wrote executive & technical reports, assumptions, 
+lineage, environment lock and README.
+Avaloka  All 8 copies are back. I'm merging what they found into one answer — 
+together they did work that would have taken a human team about 20.1 hours.
+
+Avaloka  Here's what jumped out at me:
+  Avaloka  I can already feel a pull between prompt_words and prompt_chars — 
+they move together (|corr| 0.9947).
+  Avaloka  source_benchmark leans hard on “openhermes/teknium” (43% of rows) — 
+that's a segment worth naming.
+  Avaloka  prompt_tokens is skewed (skew 10.7375) with 178 outliers — I'll be 
+careful not to let a few extreme values run the show.
+  Avaloka  I'm treating prompt_id as identifiers, not signal — they'd only fool
+a careless model.
+
+What I found
+  • 'prompt_words' and 'prompt_chars' are strongly associated (|corr|=0.9947).
+  • 'prompt_tokens' and 'prompt_chars' are strongly associated (|corr|=0.9906).
+  • Column has a single value; no predictive content.
+  • Best model 'random_forest' scored 0.9560 roc_auc on holdout.
+  • 'prompt_words' and 'prompt_chars' move together (|corr|=0.9947); consider 
+redundancy or a shared driver.
+
+What to be careful about
+  • Estimated manual effort and value are heuristics pending customer 
+calibration.
+
+Validation verdict: PASS; max safe deployment level 4/4
+
+            Avaloka clones activated (measured work units)             
+┌─────────────────────┬─────────────────────────┬────────────┬────────┐
+│ Clone / firefly     │ Replaces                │ Manual min │ Cost $ │
+├─────────────────────┼─────────────────────────┼────────────┼────────┤
+│ data_scout          │ Data analyst            │        147 │ 0.0000 │
+│ sampling_specialist │ Data scientist          │         30 │ 0.0000 │
+│ data_engineer       │ Data engineer           │        226 │ 0.0000 │
+│ analysis_planner    │ Senior data scientist   │         60 │ 0.0000 │
+│ model_scientist     │ ML scientist            │        450 │ 0.0030 │
+│ validator           │ Model-risk specialist   │        128 │ 0.0000 │
+│ finops              │ Infrastructure engineer │         45 │ 0.0000 │
+│ reporter            │ Analyst / consultant    │        120 │ 0.0000 │
+└─────────────────────┴─────────────────────────┴────────────┴────────┘
+
+┌────────────────────────────────────────────┐
+│             Mission economics              │
+│ Mission duration               5.1 seconds │
+│ Estimated manual effort         20.1 hours │
+│ Human review required            1.8 hours │
+│ Avaloka compute cost                 $0.00 │
+│ Avaloka model/API cost               $0.00 │
+│ Avaloka mission charge               $0.00 │
+│ Total mission cost (Avaloka)         $0.00 │
+│ Human review cost                  $144.80 │
+│ Total customer cost                $144.80 │
+│ Estimated labor value created       $1,608 │
+│ Economic multiplier                  11.1x │
+└────────────────────────────────────────────┘
+
+Deliverables → D:\AVALOKA\artifacts\_audit_runs\clean
+  open D:\AVALOKA\artifacts\_audit_runs\clean/executive_report.html   the decision summary
+  cat  D:\AVALOKA\artifacts\_audit_runs\clean/README.md               findings and limitations
+  python D:\AVALOKA\artifacts\_audit_runs\clean/analysis.py           reproduce this run
+Avaloka  All my copies are back and I've merged what they found. The model I 
+trust most is random_forest (roc_auc 0.9560). That beats the trivial baseline 
+(0.5000) by more than fold noise. My validation verdict is PASS. For the 
+record, that's about a 11.1x return on the effort you'd have spent.
