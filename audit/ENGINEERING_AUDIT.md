@@ -201,6 +201,36 @@ missing in a typed column and a **label** in a text column.
 
 ---
 
+## Note — access to the hosted edition (product observation, not a CLI defect)
+
+Before any of the above, the hosted web app could not be used from a new
+account. Signing in and uploading a file worked; creating a project prompted for
+a premium plan. That is consistent with two statements in the shipped docs:
+
+- `docs/USER_GUIDE.md:114-117` — *"There is no sign-up form. Access comes from an
+  invitation… Submitting an email that has no account will not create one."*
+  A workspace is provisioned by invitation, so a new email has no self-serve path
+  into one.
+- `docs/EDITIONS.md:71` lists *conversational data analysis* as available in
+  **every** edition, including Free; `docs/EDITIONS.md:103` lists *model
+  training, registry, inference serving* as **OSS ● / Free ○ / Pro ●**.
+
+So the capability this project needed was never the obstacle — workspace
+provisioning was. `docs/EDITIONS.md:42` states the intended workaround for a
+COST gate in as many words: **"Yes — self-host."** The open-source edition is
+Apache-2.0 and carries no gate on analysis, profiling, visualization, training or
+local execution (`docs/EDITIONS.md:130-158`).
+
+**What this project did:** ran the open-source CLI, which is the documented path,
+and reproduced every result locally with no API key and no cloud account. Nothing
+below depends on the hosted app. The practical consequence for an evaluation
+like this one is worth stating plainly: the fastest way to run Avaloka is the
+clone-and-run path in `MANUAL.md`, and a participant who has not been invited to
+a workspace should go straight there rather than treat the hosted gate as a
+dead end.
+
+---
+
 ## Summary
 
 Avaloka 1.6's evidence layer behaved as documented on all four contract probes —
@@ -211,3 +241,9 @@ a row count that matches nothing, both of which the project already tracks. The
 `peek()`-on-a-ZIP half of that (Finding 1, part two) is not called out in the
 `CHANGELOG` and is the more useful of the two to fix first, because it is small,
 self-contained and currently speaks a confident wrong number.
+
+The one non-code friction worth flagging is access: the hosted edition is
+invite-only, and the docs say so — but only in `USER_GUIDE.md`, not on the
+pricing or sign-up surface where a new user meets the wall. A single line at the
+gate ("no workspace for this email — run the OSS edition or request an
+invitation") would have saved the detour.
