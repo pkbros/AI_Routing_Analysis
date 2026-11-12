@@ -3,7 +3,7 @@
 ## Current Status
 
 - **Phase:** Complete — Verified & Committed
-- **State:** Dataset fetched (`2,000 x 31`), ground truth verified, all Avaloka CLI missions (`analyze`, `train`, `coordinate`) executed, engineering audit reproduced (`4/4` contract checks hold, `1/1` declared gap + `workload.peek` root cause documented), `index.html` and `README.md` verified and committed.
+- **State:** Dataset fetched (`2,000 x 31`), ground truth verified, all Avaloka CLI missions (`analyze`, `train`, `coordinate`) executed, engineering audit reproduced (`4/4` contract checks hold, `1/1` declared gap + `workload.peek` root cause documented), `index.html` and `README.md` verified and committed. Private guides (including the new `05_INDEX_HTML_GUIDE.md`) aligned around the six-beat video order.
 - **Immediate Next Step:** Participant records the 2-minute screen capture using `_participant_guides/02_VIDEO_SCRIPT_2MIN.md` (local CLI + `index.html`, no web-app footage required), pushes the repo to GitHub, and submits the Google Form using `_participant_guides/03_GOOGLE_FORM_ANSWERS.md`.
 
 ---
@@ -38,6 +38,8 @@
   - [x] `02_VIDEO_SCRIPT_2MIN.md` (second-by-second script)
   - [x] `03_GOOGLE_FORM_ANSWERS.md` (copy-paste answers for all submission fields)
   - [x] `04_INTERVIEW_CHEATSHEET.md` (talking points on Avaloka's codebase)
+  - [x] `05_INDEX_HTML_GUIDE.md` (plain-language walkthrough of every section of `index.html`)
+  - [x] All guides aligned to the same video order after Finding 6 was added
 - [x] **M7: Repository hygiene**
   - [x] `.gitignore` keeps `_participant_guides/`, `.avaloka-src/`, `.venv/`, raw cache, and `_audit_runs/` out of the public tree
   - [x] `git init` + clean commit verified
@@ -85,3 +87,5 @@
 | 2026-11-10 | Map SPROUT benchmark prompts onto Avaloka's own agent roles (`planner`, `coder`, `validator`, `profiler`, `summarizer`). | Makes the analysis speak the same vocabulary as `docs/model-routing-cost.md`, so the finding is directly actionable for the team. |
 | 2026-11-10 | Build the predictive target as pre-execution-only (`high_compute_route`), and keep a separate leaky copy. | The clean file proves a deployable model exists from information available *before* routing; the leaky file proves the Integrity gate blocks post-call telemetry. |
 | 2026-11-11 | Drop the hosted `avaloka.ai` web-app half; submit on the open-source CLI + `index.html` only. | Project creation on the hosted app requires a premium workspace. `docs/USER_GUIDE.md:114-117` states access is by invitation and an unknown email will not create an account; `docs/EDITIONS.md:42` names "self-host" as the intended workaround for a COST gate, and `EDITIONS.md:130-158` confirms the OSS edition gates nothing we used. The CLI path is therefore the documented route, not a workaround of convenience, and it makes the whole submission judge-reproducible with no account. Recorded as a product observation in `audit/ENGINEERING_AUDIT.md`. |
+| 2026-11-12 | Lead the "what broke" answer with the `goal_answered` gap, not the regex goal parser. | The parser is a documented design choice (`EDITIONS.md:71`, `cli.py:365` `--llm` opt-in, hosted planner uses an LLM), so reporting it reads as a misreading of the architecture. The validator gap is undeclared, sits in the safety layer the product is built around, reproduces three ways, and has a five-line fix. |
+| 2026-11-12 | Add `05_INDEX_HTML_GUIDE.md` and re-order every private guide around the six video beats. | The report page is the only surface shown in the video. A section-by-section plain-language guide makes it recordable without a data-science background, and one shared beat order keeps `02`, `03` and `05` consistent. |

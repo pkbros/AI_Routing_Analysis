@@ -26,6 +26,15 @@ regression. An *EXPECTED_GAP* probe is a limitation Avaloka 1.6 already declares
 in `avaloka/benchmark/known_defects.py`; it is reproduced here so the limitation
 is evidenced rather than asserted.
 
+Two further findings came from manual runs rather than the probe script, and are
+not declared anywhere upstream:
+
+- **Finding 1, part two** — the sizing line counts newline bytes inside an xlsx
+  ZIP, so it announced `99 rows` for a 400-row sheet, as an exact figure.
+- **Finding 6** — the Validator has eight checks for whether a result is safe,
+  and none for whether the question was answered, so an unanswered goal ships
+  `status: "limited"` and `verdict: "pass"` in the same bundle.
+
 ---
 
 ## Finding 1 — the workbook reader picks a sheet by size, not by the question
@@ -201,6 +210,96 @@ missing in a typed column and a **label** in a text column.
 
 ---
 
+## Finding 6 — the verdict never asks whether the question was answered
+
+**Class:** undeclared. **Severity:** medium (a PASS printed on an unanswered goal).
+
+**What I did.** Two independent runs, each asking something the data cannot
+answer. First:
+
+```bash
+avaloka analyze data/sprout_llm_routing.csv --goal "total revenue by region"
+```
+
+Second, the decoy workbook from Finding 1, whose goal names a column Avaloka
+never read. Both produced the same pair of files in the same bundle.
+
+**`goal_analysis.json`** — honest, and explicit:
+
+```json
+{
+  "goal": "total revenue by region",
+  "kind": "dataset_overview",
+  "status": "limited",
+  "columns": [],
+  "metrics": {},
+  "findings": ["This goal does not map to a supported goal-specific calculation.
+                The remaining report is a general dataset profile,
+                not an answer to the question."]
+}
+```
+
+**`validation_report.json`** — in the same folder, from the same run:
+
+```json
+{
+  "verdict": "pass",
+  "max_safe_deployment_level": 1,
+  "checks": [{"name": "data_sufficiency", "status": "pass"}]
+}
+```
+
+The reporter writes *"not an answer to the question."* The validator writes
+**`PASS`**. Three separate runs reproduce it:
+
+| Goal | `status` | Verdict | Checks run |
+|---|---|---|---|
+| `total revenue by region` | `limited` | **pass** | `data_sufficiency` only |
+| decoy workbook (goal unreadable) | `limited` | **pass** | `data_sufficiency` only |
+| `why did quality drop last quarter` | `limited` | **pass** | `data_sufficiency` only |
+
+**Root cause.** The status is computed and stored —
+`avaloka/fireflies/analysis_planner.py:148`:
+
+```python
+plan["goal_analysis_status"] = goal_result["status"]
+```
+
+and then nothing reads it. `avaloka/fireflies/validator.py` assembles its checks
+from a fixed set of eight, and there is no ninth:
+
+```
+data_sufficiency   target_leakage   split_validity   beats_baseline
+stability          overfitting      latency_budget   data_quality
+```
+
+Every one asks *"is this artifact statistically safe?"* Not one asks *"did we
+answer the question that was asked?"*
+
+**Why `PASS` is not literally a lie.** The Validator's mandate is the safety of
+the artifact. With no model trained, nothing unsafe happened, so `pass` is
+correct *by its own definition*. The defect is that the verdict has no word for
+*"I did not answer you"*. Because a PASS and an explicit "not an answer" ship
+side by side, and because PASS is the line a reader takes away, the bundle
+contradicts itself in the one place designed to prevent exactly that.
+
+**Suggested fix (five lines, in `validator.py`):**
+
+```python
+if plan.get("goal_analysis_status") == "limited":
+    checks.append({
+        "name": "goal_answered",
+        "status": WARN,          # or FAIL, if the goal is the mission
+        "severity": "high",
+        "detail": "The stated goal was not answered by a supported calculation.",
+    })
+```
+
+This also closes the silent `PASS` half of Finding 1: a wrong-sheet read that
+leaves the goal unanswered would fail this check instead of passing quietly.
+
+---
+
 ## Note — access to the hosted edition (product observation, not a CLI defect)
 
 Before any of the above, the hosted web app could not be used from a new
@@ -247,3 +346,10 @@ invite-only, and the docs say so — but only in `USER_GUIDE.md`, not on the
 pricing or sign-up surface where a new user meets the wall. A single line at the
 gate ("no workspace for this email — run the OSS edition or request an
 invitation") would have saved the detour.
+
+Of everything here, **Finding 6 is the one worth fixing first.** It is five
+lines, it sits in the layer the product is built around, and it closes the only
+place where the bundle contradicts itself: the reporter states plainly that the
+question was not answered, and the validator beside it returns `PASS`. Adding a
+`goal_answered` check costs almost nothing and makes the verdict honest in the
+one situation where a reader most needs it to be.

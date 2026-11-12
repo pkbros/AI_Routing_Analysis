@@ -60,7 +60,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:v
 </div>
 
 <h2><span class='n'>1</span>The price gap is real. The accuracy gap is not.</h2>
-<p class='lede'>Across all 2,000 prompts the frontier tier costs a mean 62.6x more per turn, yet buys a mean accuracy advantage of only +0.018 on a 0–1 correctness scale. The multiplier is highly uneven per prompt, so “frontier is 60x better” is not one decision — it is thousands of different ones.</p>
+<p class='lede'>Across all 2,000 prompts the frontier tier costs a mean 62.6x more per turn, yet buys a mean accuracy advantage of only +0.018 on a 0–1 correctness scale. The distribution is starker than the mean: the cheapest model was already perfect on <strong>70%</strong> of prompts, the two tiers <strong>tied on 84%</strong>, and the frontier model <strong>lost outright on 6.8%</strong>.</p>
 
 <div class='panel'>
   <h3>Cost per 1,000 turns (mean, USD)</h3>
@@ -169,7 +169,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:v
 </div>
 
 <h2><span class='n'>5</span>Engineering audit: what held, and what didn't.</h2>
-<p class='lede'>Reproducible with <code>python scripts/03_reproduce_edge_cases.py</code>. Four of four contract checks hold; one declared gap reproduced. Full detail, root causes and a suggested fix in <code>audit/ENGINEERING_AUDIT.md</code>.</p>
+<p class='lede'>Reproducible with <code>python scripts/03_reproduce_edge_cases.py</code>. Four of four contract checks hold; one declared gap reproduced; two further problems found by hand. Full detail, root causes and suggested fixes in <code>audit/ENGINEERING_AUDIT.md</code>.</p>
 
 <div class='panel'>
   <table>
@@ -179,11 +179,16 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:v
     <tr><td>Unresolved measure disclosed, not counted</td><td>#475</td><td class='pass'>pass</td></tr>
     <tr><td>A null-like word stays a category</td><td>#474 / #479</td><td class='pass'>pass</td></tr>
     <tr><td>Sheet selected by the question, not by cell count</td><td>xlsx_decoy_sheet</td><td class='gap'>reproduced gap</td></tr>
+    <tr><td>The verdict checks whether the question was answered</td><td>undeclared</td><td class='gap'>missing check</td></tr>
   </table>
 </div>
 
 <div class='callout'>
   <strong>Two root causes, one run.</strong> The workbook reader chose a sheet by non-empty cell count, ignoring the question (<code>avaloka/io/loader.py::_read_excel</code>, line 158) — the declared defect. And the sizing line spoke “99 rows” for a sheet with 400, because <code>avaloka/workload.py::peek</code> (lines 84–85) treats every non-Parquet suffix as CSV and counts newline bytes inside the xlsx ZIP. That second one is undeclared, small, and speaks a confident wrong number first.
+</div>
+
+<div class='callout'>
+  <strong>The verdict has no word for “I did not answer you.”</strong> Ask something the data cannot answer and the bundle returns two verdicts at once. <code>goal_analysis.json</code> reports <code>status: "limited"</code> — <em>“not an answer to the question”</em>. Beside it, <code>validation_report.json</code> reports <span class='pass'>verdict: pass</span>. The Validator runs eight checks for whether a result is <em>safe</em>, and none for whether the question was <em>answered</em>. Five lines in <code>validator.py</code> would close it — and would also catch the wrong-sheet read above, which currently passes silently too.
 </div>
 
 <h2><span class='n'>6</span>Reproduce it</h2>

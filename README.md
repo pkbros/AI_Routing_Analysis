@@ -26,6 +26,8 @@ Fetching is $0 and uses **zero LLM tokens**: the numbers are downloaded once and
 
 1. **The price gap is real and stable; the accuracy gap is not.** Across the whole set, a frontier call costs a mean **$4.82 per 1,000 turns** against **$0.094** for the economy tier — a **62.6x** multiplier (individual prompts range from 5.98x to 446x). Yet the mean *accuracy* advantage of the best frontier model over the best economy model is only **+0.0179** on a 0-1 correctness scale.
 
+   The distribution is more useful than the mean: on **70.0%** of prompts the cheapest model already scored ~1.0, the two tiers **tied on 84.0%**, the frontier model won on **9.2%** and **lost outright on 6.8%**. Paying 62x mostly bought a tie.
+
 2. **The 62x is worth it in exactly one place — the code-writing role.** Mapping prompts to Avaloka's own agent roles, the frontier gain over `gpt-4o-mini` is:
 
    | Agent role | Frontier gain over gpt-4o-mini |
@@ -87,6 +89,7 @@ Reproducible with `python scripts/03_reproduce_edge_cases.py` (4/4 contract chec
 
 - **Holds:** post-call leakage blocked by name (DQ-01); a mandatory baseline on the confidence interval (DQ-05); an unresolved measure disclosed with candidates instead of answered with a row count (#475); `"None"` preserved as a category across 1,631 rows (#474/#479).
 - **Reproduced gap:** the spreadsheet reader picks a sheet by cell count, not by the question (`xlsx_decoy_sheet_outweighs_the_answer`) — and, newly observed, `workload.peek()` counts newline bytes in the xlsx ZIP container, so the sizing line speaks a confident `99 rows` for a workbook whose sheet has 400. Root causes and a suggested fix are in the audit.
+- **New finding — the verdict never asks whether the question was answered.** The Validator has eight checks for whether a result is safe, and none for whether the goal was answered. An unanswerable goal therefore ships `status: "limited"` in `goal_analysis.json` and `verdict: "pass"` in `validation_report.json`, from the same run. Reproduced three ways; the five-line fix is in the audit.
 
 ## Reproduce it
 
