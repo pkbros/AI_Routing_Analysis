@@ -1,6 +1,8 @@
 # Where does a frontier LLM actually earn its 62x?
 
-**A reproducible routing-economics audit built with [Avaloka](https://github.com/guruvaidev/avaloka) 1.6 on real multi-LLM benchmark telemetry.**
+**A reproducible routing-economics study of real multi-LLM benchmark telemetry, built with [Avaloka](https://github.com/guruvaidev/avaloka) 1.6.**
+
+The findings stand on their own and are readable without knowing the tool ([`index.html`](index.html)). How the pipeline was run — and the three defects the audit found in it — is a separate page ([`avaloka.html`](avaloka.html)) and a written report ([`audit/ENGINEERING_AUDIT.md`](audit/ENGINEERING_AUDIT.md)).
 
 Submitted to the Avaloka Engineering Intern Hackathon (14-15 Nov 2026) by **Prateek Sharma**.
 
@@ -28,9 +30,9 @@ Fetching is $0 and uses **zero LLM tokens**: the numbers are downloaded once and
 
    The distribution is more useful than the mean: on **70.0%** of prompts the cheapest model already scored ~1.0, the two tiers **tied on 84.0%**, the frontier model won on **9.2%** and **lost outright on 6.8%**. Paying 62x mostly bought a tie.
 
-2. **The 62x is worth it in exactly one place — the code-writing role.** Mapping prompts to Avaloka's own agent roles, the frontier gain over `gpt-4o-mini` is:
+2. **The 62x is worth it in exactly one place — the code-writing job.** Grouping prompts by the job they ask the model to do, the frontier gain over `gpt-4o-mini` is:
 
-   | Agent role | Frontier gain over gpt-4o-mini |
+   | Job type | Frontier gain over gpt-4o-mini |
    |---|---:|
    | profiler | **+0.122** |
    | coder | **+0.073** |
@@ -38,7 +40,7 @@ Fetching is $0 and uses **zero LLM tokens**: the numbers are downloaded once and
    | planner | -0.001 |
    | validator | -0.036 |
 
-   This independently reproduces the conclusion in Avaloka's own `docs/model-routing-cost.md`: **spend on the coder, leave the planner on the cheap model.** The planner is the largest prompt and the most expensive to upgrade, and here it buys a rounding error.
+   This independently reproduces published guidance on routing agent traffic — including Avaloka's own `docs/model-routing-cost.md`: **spend on the coder, leave the planner on the cheap model.** The planner is the largest prompt and the most expensive to upgrade, and here it buys a rounding error.
 
 3. **Task domain, not prompt length, predicts whether the gap exists.** Frontier advantage by domain runs from **-0.237** (multi-step deduction, where a cheap model wins outright) to **+0.050** (multi-task knowledge) — a 29-point swing that a single global route setting cannot capture.
 
@@ -116,7 +118,8 @@ Python 3.11 or 3.12. No API key: the CLI runs fully offline, and every number he
 | `scripts/` | The three-stage pipeline (fetch, verify, edge-case audit) |
 | `artifacts/` | Verbatim Avaloka bundles — `analyze`, `train` (clean + leaky), `coordinate` |
 | `audit/` | The engineering audit + raw CLI logs |
-| `index.html` | Self-contained interactive report (open in any browser) |
+| `index.html` | The findings, as a self-contained page — open in any browser |
+| `avaloka.html` | How the pipeline was run, the guard rail, and the engineering audit |
 | `SPEC.md` / `TRACKER.md` | Research spec and live status |
 
 ## Source

@@ -3,7 +3,7 @@
 <head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Where does a frontier LLM earn its 62x? — Avaloka routing-economics audit</title>
+<title>Where does a frontier LLM earn its 62x? — routing economics on 2,000 prompts</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--grid:#e2e8f0;--bg:#f8fafc;--card:#ffffff;--frontier:#4f46e5;--economy:#14b8a6;--neg:#e11d48;--ok:#059669;--warn:#d97706}
 *{box-sizing:border-box}
@@ -40,16 +40,17 @@ code,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 pre{background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:10px;overflow-x:auto;font-size:13px}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:var(--muted);font-size:13px}
 .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:#eef2ff;color:var(--frontier)}
+a{color:var(--frontier)}
 </style>
 </head>
 <body>
 <div class='wrap'>
 
 <header>
-  <span class='tag'>Avaloka 1.6 · routing economics</span>
+  <span class='tag'>LLM routing economics · 2,000 prompts · 13 models</span>
   <h1>Where does a frontier LLM actually earn its 62x?</h1>
   <p class='sub'>A reproducible audit of real multi-LLM routing telemetry. 2,000 benchmark prompts, 13 models across three price tiers, real judge scores and real token counts — every figure verified against deterministic Python.</p>
-  <div class='byline'>Prateek Sharma · Avaloka Engineering Intern Hackathon · built with the open-source <strong>avaloka</strong> CLI 1.6.0 · $0, no API key, 0 LLM tokens</div>
+  <div class='byline'>Prateek Sharma · independent analysis · pipeline run with the open-source avaloka 1.6.0 CLI · $0, no API key, 0 LLM tokens</div>
 </header>
 
 <div class='cards'>
@@ -75,12 +76,12 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:v
   </svg>
 </div>
 
-<h2><span class='n'>2</span>The 62x pays off in exactly one place: the code-writing role.</h2>
-<p class='lede'>Mapping each benchmark prompt onto the Avaloka agent role it belongs to, the frontier gain over the cheap <code>gpt-4o-mini</code> is concentrated almost entirely on the profiler and coder. On the planner — the largest prompt in the system and the most expensive agent to upgrade — it is zero. This independently reproduces Avaloka's own model-routing-cost guidance.</p>
+<h2><span class='n'>2</span>The 62x pays off in exactly one place: the code-writing job.</h2>
+<p class='lede'>Grouping each prompt by the job it asks the model to do, the frontier gain over the cheap <code>gpt-4o-mini</code> is concentrated almost entirely on the profiler and coder. On the planner — the largest prompt in the set and the most expensive job to upgrade — it is zero. This agrees with published guidance on routing agent traffic: spend on the coder, leave the planner on the cheap model.</p>
 
 <div class='panel'>
-  <h3>Frontier gain over gpt-4o-mini, by agent role</h3>
-  <p class='cap'>Green bars are gains, red bars are losses. Source: artifacts/ground_truth_metrics.json</p>
+  <h3>Frontier gain over gpt-4o-mini, by job type</h3>
+  <p class='cap'>Indigo bars are gains, red bars are losses. Source: artifacts/ground_truth_metrics.json</p>
   <svg viewBox='0 0 760 186' width='100%' role='img' xmlns='http://www.w3.org/2000/svg'>
     <line x1='264.1' y1='0' x2='264.1' y2='170' stroke='#e2e8f0' stroke-width='1'/>
     <text x='138' y='27' text-anchor='end' font-size='13' fill='#0f172a'>profiler</text>
@@ -128,7 +129,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:v
 </div>
 
 <h2><span class='n'>3</span>The biggest routing decision is “no fallback needed”.</h2>
-<p class='lede'>Grouping by fallback policy shows the largest segment is the literal category <code>None</code> — 1,631 rows, 81.6% — where the cheap model already sufficed. Avaloka preserves it as a real category rather than collapsing it into a missing-value group (audit Finding 5).</p>
+<p class='lede'>Grouping by the fallback policy recorded for each prompt, the largest segment is the literal string <code>None</code> — 1,631 rows, 81.6% — where the cheap model already sufficed. That word is a category here, not a missing value: read carelessly it would delete four-fifths of the dataset. Read correctly, it is the single largest route in the system.</p>
 
 <div class='panel'>
   <h3>fallback_route share of 2,000 prompts</h3>
@@ -150,11 +151,11 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:v
 </div>
 
 <h2><span class='n'>4</span>A router is learnable from pre-call features alone.</h2>
-<p class='lede'>Using only what is known <em>before</em> a call runs — prompt structure, domain, role, reference length — Avaloka trained and validated a router for <code>high_compute_route</code>. It beats the trivial baseline on the confidence interval and is certified deployable.</p>
+<p class='lede'>Using only what is known <em>before</em> a call runs — prompt structure, domain, job type, reference length — a model predicts <code>high_compute_route</code> at 0.956, against 0.500 for guessing. It beats the trivial baseline on the confidence interval and is certified deployable.</p>
 
 <div class='panel'>
   <h3>Model panel and the mandatory baseline</h3>
-  <p class='cap'>Source: artifacts/avaloka-train-clean/model_card.md — verdict PASS, max safe deployment level 4/4</p>
+  <p class='cap'>Source: artifacts/avaloka-train-clean/model_card.md — verdict PASS, certified deployable at 4/4 (the highest tier)</p>
   <table>
     <tr><th>Candidate</th><th class='num'>Holdout roc_auc</th><th class='num'>CV mean ± std</th></tr>
     <tr><td>random_forest <em>(selected)</em></td><td class='num'>0.9560</td><td class='num'>0.933 ± 0.006</td></tr>
@@ -165,43 +166,17 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:v
 </div>
 
 <div class='callout'>
-  <strong>The evidence layer earns its keep.</strong> Adding one post-call column (<code>post_call_route_flag</code>) that encodes the target drove the claimed score to a perfect <strong>1.0000</strong>. Avaloka did not celebrate it — the Skeptic returned <span class='fail'>verdict FAIL</span>, named the leaking column, and capped the deployment ceiling at <strong>1/4</strong>. A model that has learned nothing should not look perfect.
+  <strong>A perfect score is a warning, not a win.</strong> Adding one post-call column (<code>post_call_route_flag</code>) that encodes the target drove the claimed score to <strong>1.0000</strong>. The validation step refused it: verdict <span class='fail'>FAIL</span>, the leaking column named, and the deployable ceiling capped at <strong>1/4</strong>. A model that has learned nothing should not look perfect.
 </div>
 
-<h2><span class='n'>5</span>Engineering audit: what held, and what didn't.</h2>
-<p class='lede'>Reproducible with <code>python scripts/03_reproduce_edge_cases.py</code>. Four of four contract checks hold; one declared gap reproduced; two further problems found by hand. Full detail, root causes and suggested fixes in <code>audit/ENGINEERING_AUDIT.md</code>.</p>
-
-<div class='panel'>
-  <table>
-    <tr><th>Probe</th><th>Declared as</th><th>Result</th></tr>
-    <tr><td>A post-call feature that encodes the target fails training</td><td>DQ-01</td><td class='pass'>pass</td></tr>
-    <tr><td>The winner is compared with a trivial baseline</td><td>DQ-05</td><td class='pass'>pass</td></tr>
-    <tr><td>Unresolved measure disclosed, not counted</td><td>#475</td><td class='pass'>pass</td></tr>
-    <tr><td>A null-like word stays a category</td><td>#474 / #479</td><td class='pass'>pass</td></tr>
-    <tr><td>Sheet selected by the question, not by cell count</td><td>xlsx_decoy_sheet</td><td class='gap'>reproduced gap</td></tr>
-    <tr><td>The verdict checks whether the question was answered</td><td>undeclared</td><td class='gap'>missing check</td></tr>
-  </table>
-</div>
-
-<div class='callout'>
-  <strong>Two root causes, one run.</strong> The workbook reader chose a sheet by non-empty cell count, ignoring the question (<code>avaloka/io/loader.py::_read_excel</code>, line 158) — the declared defect. And the sizing line spoke “99 rows” for a sheet with 400, because <code>avaloka/workload.py::peek</code> (lines 84–85) treats every non-Parquet suffix as CSV and counts newline bytes inside the xlsx ZIP. That second one is undeclared, small, and speaks a confident wrong number first.
-</div>
-
-<div class='callout'>
-  <strong>The verdict has no word for “I did not answer you.”</strong> Ask something the data cannot answer and the bundle returns two verdicts at once. <code>goal_analysis.json</code> reports <code>status: "limited"</code> — <em>“not an answer to the question”</em>. Beside it, <code>validation_report.json</code> reports <span class='pass'>verdict: pass</span>. The Validator runs eight checks for whether a result is <em>safe</em>, and none for whether the question was <em>answered</em>. Five lines in <code>validator.py</code> would close it — and would also catch the wrong-sheet read above, which currently passes silently too.
-</div>
-
-<h2><span class='n'>6</span>Reproduce it</h2>
+<h2><span class='n'>5</span>Reproduce it</h2>
 <pre>python scripts/01_fetch_and_prepare_data.py   # data — no key, 0 LLM tokens
 python scripts/02_verify_ground_truth.py      # deterministic ground truth
-avaloka analyze data/sprout_llm_routing.csv --goal "average frontier_gain_over_mini by agent_role"
-avaloka train   data/sprout_pre_execution_routing.csv --target high_compute_route --deployable
-avaloka coordinate data/sprout_llm_routing.csv --workers 4
-python scripts/03_reproduce_edge_cases.py     # the audit</pre>
+python scripts/03_reproduce_edge_cases.py     # the tool audit</pre>
 
 <footer>
-  Dataset: CARROT-LLM-Routing/SPROUT (HuggingFace), used under its published terms. Model prices are 2026 list snapshots applied to measured token counts — model prices, not measured bills. Every figure above is copied from the verified artefacts in this repository (<code>artifacts/ground_truth_metrics.json</code>, <code>artifacts/avaloka-train-clean/model_card.md</code>, <code>audit/reproduction_results.json</code>).<br>
-  Built with the open-source <strong>avaloka</strong> 1.6.0 CLI (Apache-2.0). Analysis and documentation: MIT.
+  Dataset: CARROT-LLM-Routing/SPROUT (HuggingFace), used under its published terms. Model prices are 2026 list snapshots applied to measured token counts — model prices, not measured bills. Every figure above is copied from the verified artefacts in this repository (<code>artifacts/ground_truth_metrics.json</code>, <code>artifacts/avaloka-train-clean/model_card.md</code>).<br>
+  Analysis and documentation: MIT. How the pipeline was run, and what the audit found in the tool, is on <a href='avaloka.html'>avaloka.html</a>.
 </footer>
 
 </div>

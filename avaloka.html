@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>How the analysis was run — avaloka 1.6 and what the audit found</title>
+<style>
+:root{--ink:#0f172a;--muted:#64748b;--grid:#e2e8f0;--bg:#f8fafc;--card:#ffffff;--frontier:#4f46e5;--economy:#14b8a6;--neg:#e11d48;--ok:#059669;--warn:#d97706}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+header{border-bottom:1px solid var(--grid);padding-bottom:28px;margin-bottom:32px}
+h1{font-size:34px;line-height:1.2;margin:0 0 10px}
+.sub{color:var(--muted);font-size:17px;max-width:70ch}
+.byline{margin-top:14px;font-size:14px;color:var(--muted)}
+h2{font-size:22px;margin:48px 0 6px;padding-top:8px}
+h2 .n{color:var(--frontier);font-variant-numeric:tabular-nums;margin-right:8px}
+p{max-width:78ch}
+.lede{color:var(--muted)}
+.panel{background:var(--card);border:1px solid var(--grid);border-radius:12px;padding:20px;margin:20px 0}
+.panel h3{margin:0 0 4px;font-size:16px}
+.panel .cap{color:var(--muted);font-size:13px;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 0}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.pass{color:var(--ok);font-weight:600}
+.fail{color:var(--neg);font-weight:600}
+.gap{color:var(--warn);font-weight:600}
+.callout{border-left:4px solid var(--neg);background:#fff1f2;border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0}
+.callout.ok{border-color:var(--ok);background:#ecfdf5}
+.callout code{background:rgba(0,0,0,.06);padding:1px 5px;border-radius:4px;font-size:13px}
+code,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:10px;overflow-x:auto;font-size:13px}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--grid);color:var(--muted);font-size:13px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:#eef2ff;color:var(--frontier)}
+a{color:var(--frontier)}
+</style>
+</head>
+<body>
+<div class='wrap'>
+
+<header>
+  <span class='tag'>Tools · avaloka 1.6.0 · open source</span>
+  <h1>How the analysis was run, and what the audit found</h1>
+  <p class='sub'>The findings stand on their own on <a href='index.html'>the analysis page</a>. This page is the machinery behind them: the three commands that produced the results, the guard rail that refused a cheating model, and the three defects I found while testing it.</p>
+  <div class='byline'>Prateek Sharma · Avaloka Engineering Intern Hackathon · open-source CLI, $0, no API key, 0 LLM tokens</div>
+</header>
+
+<h2><span class='n'>1</span>What the tool actually did</h2>
+<p class='lede'>Three commands, three different jobs. None of them called an LLM: the whole run is deterministic and offline.</p>
+
+<div class='panel'>
+  <table>
+    <tr><th>Command</th><th>Question it answers</th><th>What it produced here</th></tr>
+    <tr><td><code>analyze</code></td><td>What is in this data?</td><td>Three grouped reports (by job type, fallback route, task domain) + data-quality profile</td></tr>
+    <tr><td><code>train</code></td><td>Can we predict the answer?</td><td>A validated router, 0.956 holdout, level 4/4, plus a FastAPI service and Dockerfile</td></tr>
+    <tr><td><code>coordinate</code></td><td>Can the work be split?</td><td>Four sub-runs of 500 rows each, merged into one result, all shards passing</td></tr>
+  </table>
+</div>
+
+<h2><span class='n'>2</span>The guard rail, in one example</h2>
+<p class='lede'>The reason the router score is believable is not the score. It is that the same pipeline refuses a good-looking one.</p>
+
+<div class='callout ok'>
+  <strong>It caught me cheating.</strong> I added one column collected <em>after</em> the call (<code>post_call_route_flag</code>) that simply encoded the answer. The claimed score jumped to a perfect <strong>1.0000</strong> — and the run was rejected: verdict <span class='fail'>FAIL</span>, the leaking column named in the output, deployment capped at <strong>1/4</strong>. The clean model, using only pre-call features, stayed at 0.956 and level 4/4. A perfect score on a real problem is a bug, not a triumph.
+</div>
+
+<h2><span class='n'>3</span>The engineering audit</h2>
+<p class='lede'>Reproducible with <code>python scripts/03_reproduce_edge_cases.py</code>: four of four contract checks hold, one declared gap reproduced, and two further defects found by hand. Full write-up with root causes and patches in <code>audit/ENGINEERING_AUDIT.md</code>.</p>
+
+<div class='panel'>
+  <h3>What held</h3>
+  <table>
+    <tr><th>Probe</th><th>Declared as</th><th>Result</th></tr>
+    <tr><td>A post-call feature that encodes the target fails training</td><td>DQ-01</td><td class='pass'>pass</td></tr>
+    <tr><td>The winner is compared with a trivial baseline</td><td>DQ-05</td><td class='pass'>pass</td></tr>
+    <tr><td>An unresolved measure is disclosed, not counted</td><td>#475</td><td class='pass'>pass</td></tr>
+    <tr><td>A null-like word stays a category</td><td>#474 / #479</td><td class='pass'>pass</td></tr>
+  </table>
+</div>
+
+<div class='panel'>
+  <h3>What didn't</h3>
+  <table>
+    <tr><th>Problem</th><th>Declared?</th><th>Result</th></tr>
+    <tr><td>The verdict never checks whether the question was answered</td><td>no — mine</td><td class='gap'>missing check</td></tr>
+    <tr><td>A sheet is chosen by cell count, not by the question</td><td>yes, <code>xlsx_decoy_sheet</code></td><td class='gap'>reproduced</td></tr>
+    <tr><td>The sizing line says 99 rows for a 400-row sheet</td><td>no — mine</td><td class='gap'>reproduced</td></tr>
+  </table>
+</div>
+
+<div class='callout'>
+  <strong>The verdict has no word for “I did not answer you.”</strong> Ask something the data cannot answer and the bundle returns two verdicts at once. <code>goal_analysis.json</code> reports <code>status: "limited"</code> — literally <em>“not an answer to the question”</em>. Beside it, <code>validation_report.json</code> reports <span class='pass'>verdict: pass</span>, having run one check: <code>data_sufficiency</code>. The validator has eight check types — <code>data_sufficiency</code>, <code>target_leakage</code>, <code>split_validity</code>, <code>beats_baseline</code>, <code>stability</code>, <code>overfitting</code>, <code>latency_budget</code>, <code>data_quality</code> — and every one asks “is this result safe?”. None asks “did we answer the question?”. The status is already computed at <code>analysis_planner.py:148</code>; nothing reads it. Five lines in <code>validator.py</code> would close it.
+</div>
+
+<div class='callout'>
+  <strong>Two wrong numbers from one run.</strong> The workbook reader chose a sheet by non-empty cell count, ignoring the goal (<code>io/loader.py::_read_excel</code>, line 158), so the goal was reported unanswerable — and the run still said PASS. And the sizing line announced <strong>99 rows</strong> for a sheet with <strong>400</strong>, because <code>workload.py::peek</code> (lines 84–85) treats every non-Parquet suffix as CSV and counts newline bytes inside the xlsx ZIP container. It returns <code>estimated=False</code>, so the wrong number is spoken as exact.
+</div>
+
+<h2><span class='n'>4</span>Reproduce the tool half</h2>
+<pre>python -m venv .venv
+.venv/Scripts/pip install -e ".avaloka-src[formats,benchmark,dev]"
+
+.venv/Scripts/avaloka analyze data/sprout_llm_routing.csv --goal "average frontier_gain_over_mini by agent_role"
+.venv/Scripts/avaloka train   data/sprout_pre_execution_routing.csv --target high_compute_route --deployable
+.venv/Scripts/avaloka coordinate data/sprout_llm_routing.csv --workers 4
+python scripts/03_reproduce_edge_cases.py</pre>
+
+<footer>
+  Full evidence, raw CLI logs, root causes and suggested patches: <code>audit/ENGINEERING_AUDIT.md</code>.<br>
+  Back to <a href='index.html'>the analysis</a>. avaloka is Apache-2.0; the analysis and this page are MIT.
+</footer>
+
+</div>
+</body>
+</html>

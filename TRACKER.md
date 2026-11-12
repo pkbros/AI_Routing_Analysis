@@ -39,6 +39,7 @@
   - [x] `03_GOOGLE_FORM_ANSWERS.md` (copy-paste answers for all submission fields)
   - [x] `04_INTERVIEW_CHEATSHEET.md` (talking points on Avaloka's codebase)
   - [x] `05_INDEX_HTML_GUIDE.md` (plain-language walkthrough of every section of `index.html`)
+  - [x] `06_AVALOKA_PAGE_GUIDE.md` (walkthrough of `avaloka.html` + the 15-second clip)
   - [x] All guides aligned to the same video order after Finding 6 was added
 - [x] **M7: Repository hygiene**
   - [x] `.gitignore` keeps `_participant_guides/`, `.avaloka-src/`, `.venv/`, raw cache, and `_audit_runs/` out of the public tree
@@ -89,3 +90,4 @@
 | 2026-11-11 | Drop the hosted `avaloka.ai` web-app half; submit on the open-source CLI + `index.html` only. | Project creation on the hosted app requires a premium workspace. `docs/USER_GUIDE.md:114-117` states access is by invitation and an unknown email will not create an account; `docs/EDITIONS.md:42` names "self-host" as the intended workaround for a COST gate, and `EDITIONS.md:130-158` confirms the OSS edition gates nothing we used. The CLI path is therefore the documented route, not a workaround of convenience, and it makes the whole submission judge-reproducible with no account. Recorded as a product observation in `audit/ENGINEERING_AUDIT.md`. |
 | 2026-11-12 | Lead the "what broke" answer with the `goal_answered` gap, not the regex goal parser. | The parser is a documented design choice (`EDITIONS.md:71`, `cli.py:365` `--llm` opt-in, hosted planner uses an LLM), so reporting it reads as a misreading of the architecture. The validator gap is undeclared, sits in the safety layer the product is built around, reproduces three ways, and has a five-line fix. |
 | 2026-11-12 | Add `05_INDEX_HTML_GUIDE.md` and re-order every private guide around the six video beats. | The report page is the only surface shown in the video. A section-by-section plain-language guide makes it recordable without a data-science background, and one shared beat order keeps `02`, `03` and `05` consistent. |
+| 2026-11-12 | Split the web surface: `index.html` = standalone findings, `avaloka.html` = pipeline, guard rail and engineering audit. | The submission must show Avaloka *was used*, not advertise it throughout. The analysis has to work as an independent project, so the findings page carries no tool-level material; the audit and pipeline live on their own page, which also gives the bug hunt a clean 15-second clip instead of interrupting the findings narrative. |

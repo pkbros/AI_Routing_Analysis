@@ -18,7 +18,7 @@ Following deterministic staged-artifact discipline, every stage writes inspectab
 | **Stage 2: Deterministic Ground-Truth Verification** | `scripts/02_verify_ground_truth.py` | `data/sprout_llm_routing.csv` | `artifacts/ground_truth_metrics.json` |
 | **Stage 3: Avaloka CLI Execution (`analyze`, `train`, `coordinate`)** | `avaloka` CLI (`v1.6.0`) | `data/sprout_*.csv` | `artifacts/avaloka-analyze-role/`, `artifacts/avaloka-analyze-fallback/`, `artifacts/avaloka-analyze-domain/`, `artifacts/avaloka-train-clean/`, `artifacts/avaloka-train-leaky/`, `artifacts/avaloka-fleet/` |
 | **Stage 4: Avaloka 1.6 Engineering & Edge-Case Audit** | `scripts/03_reproduce_edge_cases.py` | `data/sprout_multi_sheet_audit.xlsx` + CLI goal probes | `audit/ENGINEERING_AUDIT.md`, `audit/reproduction_results.json`, `audit/logs/*.log` |
-| **Stage 5: Visual Report & Documentation** | `index.html`, `README.md`, `MANUAL.md` | Staged JSON/HTML artifacts | Self-contained interactive report + validated Mermaid diagrams |
+| **Stage 5: Visual Report & Documentation** | `index.html`, `avaloka.html`, `README.md`, `MANUAL.md` | Staged JSON/HTML artifacts | Self-contained findings page + tool/audit page + validated Mermaid diagrams |
 
 ## 3. Dataset Provenance
 
