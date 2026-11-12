@@ -2,7 +2,7 @@
 
 **A reproducible routing-economics study of real multi-LLM benchmark telemetry, built with [Avaloka](https://github.com/guruvaidev/avaloka) 1.6.**
 
-The findings stand on their own and are readable without knowing the tool ([`index.html`](index.html)). How the pipeline was run — and the three defects the audit found in it — is a separate page ([`avaloka.html`](avaloka.html)) and a written report ([`audit/ENGINEERING_AUDIT.md`](audit/ENGINEERING_AUDIT.md)).
+The findings stand on their own and are readable without knowing the tool ([`index.html`](index.html)). How the pipeline was run — and the defects the audit found in it — is a separate page ([`avaloka.html`](avaloka.html)) and two written reports: the hosted-app defect ([`audit/HOSTED_OBSERVATION.md`](audit/HOSTED_OBSERVATION.md)) and the CLI audit ([`audit/ENGINEERING_AUDIT.md`](audit/ENGINEERING_AUDIT.md)).
 
 Submitted to the Avaloka Engineering Intern Hackathon (14-15 Nov 2026) by **Prateek Sharma**.
 
@@ -89,7 +89,9 @@ Every figure Avaloka reports was checked against deterministic Python arithmetic
 
 ## Engineering audit — what worked and what didn't
 
-Reproducible with `python scripts/03_reproduce_edge_cases.py` (4/4 contract checks hold, 1/1 declared gap reproduced). Full detail in [`audit/ENGINEERING_AUDIT.md`](audit/ENGINEERING_AUDIT.md).
+**The strongest defect is in the hosted app, not the CLI.** Asked *"where does paying much more for the frontier model actually pay off, by job type?"*, the hosted analysis answered from **183 of 2,000 rows** — exactly the prompts where the expensive model won — and reported those averages as the dataset's. Profiler went from **+0.054 to +0.79**, validator from **+0.019 to +0.86**, planner from **−0.001 to +0.28**, in a fluent answer with no row-count disclosure. The same question asked plainly (`average frontier_advantage by agent_role`) returns the correct 2,000-row table. The claim checker then flagged the *correct* follow-up as "did not check out", because it compares prose to the computed table and a filtered table is internally consistent. Screenshots, the five-click reproduction and a three-part fix: [`audit/HOSTED_OBSERVATION.md`](audit/HOSTED_OBSERVATION.md).
+
+The CLI half is reproducible with `python scripts/03_reproduce_edge_cases.py` (4/4 contract checks hold, 1/1 declared gap reproduced). Full detail in [`audit/ENGINEERING_AUDIT.md`](audit/ENGINEERING_AUDIT.md).
 
 - **Holds:** post-call leakage blocked by name (DQ-01); a mandatory baseline on the confidence interval (DQ-05); an unresolved measure disclosed with candidates instead of answered with a row count (#475); `"None"` preserved as a category across 1,631 rows (#474/#479).
 - **Reproduced gap:** the spreadsheet reader picks a sheet by cell count, not by the question (`xlsx_decoy_sheet_outweighs_the_answer`) — and, newly observed, `workload.peek()` counts newline bytes in the xlsx ZIP container, so the sizing line speaks a confident `99 rows` for a workbook whose sheet has 400. Root causes and a suggested fix are in the audit.
@@ -119,7 +121,7 @@ Python 3.11 or 3.12. No API key: the CLI runs fully offline, and every number he
 | `data/` | The curated dataset (`csv`, `parquet`, multi-sheet `xlsx`) + `provenance.json` with SHA-256s |
 | `scripts/` | The three-stage pipeline (fetch, verify, edge-case audit) |
 | `artifacts/` | Verbatim Avaloka bundles — `analyze`, `train` (clean + leaky), `coordinate` |
-| `audit/` | The engineering audit + raw CLI logs |
+| `audit/` | The hosted-app observation, the CLI engineering audit + raw CLI logs |
 | `index.html` | The findings, as a self-contained page — open in any browser |
 | `avaloka.html` | How the pipeline was run, the guard rail, and the engineering audit |
 | `SPEC.md` / `TRACKER.md` | Research spec and live status |

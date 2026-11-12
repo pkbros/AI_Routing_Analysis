@@ -42,7 +42,7 @@ a{color:var(--frontier)}
 <header>
   <span class='tag'>Tools · avaloka 1.6.0 · open source</span>
   <h1>How the analysis was run, and what the audit found</h1>
-  <p class='sub'>The findings stand on their own on <a href='index.html'>the analysis page</a>. This page is the machinery behind them: the three commands that produced the results, the guard rail that refused a cheating model, and the three defects I found while testing it.</p>
+  <p class='sub'>The findings stand on their own on <a href='index.html'>the analysis page</a>. This page is the machinery behind them: the three commands that produced the results, the guard rail that refused a cheating model, and the defects I found while testing it — including one in the hosted app that outranks everything in the CLI.</p>
   <div class='byline'>Prateek Sharma · Avaloka Engineering Intern Hackathon · open-source CLI, $0, no API key, 0 LLM tokens</div>
 </header>
 
@@ -65,7 +65,28 @@ a{color:var(--frontier)}
   <strong>It caught me cheating.</strong> I added one column collected <em>after</em> the call (<code>post_call_route_flag</code>) that simply encoded the answer. The claimed score jumped to a perfect <strong>1.0000</strong> — and the run was rejected: verdict <span class='fail'>FAIL</span>, the leaking column named in the output, deployment capped at <strong>1/4</strong>. The clean model, using only pre-call features, stayed at 0.956 and level 4/4. A perfect score on a real problem is a bug, not a triumph.
 </div>
 
-<h2><span class='n'>3</span>The engineering audit</h2>
+<h2><span class='n'>3</span>The one the hosted app got wrong</h2>
+<p class='lede'>This is the strongest defect in the whole submission, and the CLI cannot produce it — <code>analyze</code> never filters rows by the thing being measured. It is in the hosted product, on this dataset, on the question the project is about.</p>
+
+<div class='panel'>
+  <table>
+    <tr><th>What I asked the hosted app</th><th>Rows used</th><th>What it answered</th></tr>
+    <tr><td><code>where does paying much more for the frontier model actually pay off, by job type?</code></td><td class='fail'>183 of 2,000</td><td>validator <strong>0.86</strong>, profiler <strong>0.79</strong>, planner <strong>0.28</strong></td></tr>
+    <tr><td><code>average frontier_advantage by agent_role</code></td><td class='pass'>2,000 of 2,000</td><td>profiler <strong>0.05</strong>, validator <strong>0.02</strong>, planner <strong>−0.00</strong></td></tr>
+  </table>
+</div>
+
+<div class='callout'>
+  <strong>It answered from the successes and reported them as the dataset.</strong> 183 is exactly the number of prompts where the expensive model won. Read as a filter, “pays off” became <code>frontier_advantage &gt; 0</code>, and nothing on the result card said which rows were used. The same question asked plainly returns the correct 2,000-row table. The effect is to turn <strong>+0.054 into +0.79</strong> — wrong by 15× to 45×, in a fluent answer, with no warning.
+</div>
+
+<div class='callout ok'>
+  <strong>And the checker fired on the correct answer instead.</strong> The next reply, the one with the right population, was flagged <em>“did not check out”</em> — <em>says “lowest” at 0.054, but the min of <code>avg_frontier_advantage</code> is −0.0045</em> — while the reply had said <strong>highest</strong>. The checker compares the words to the computed table, and a filtered table is internally consistent. It never asks whether the table covers the dataset.
+</div>
+
+<p>Fix in three parts: print the population on every result card (<code>183 of 2,000</code>) and carry it into the chart title and the narration; never derive a row filter from the question without saying so; and assert the row count in the claim verifier before checking the arithmetic. Screenshots, the five-click reproduction and the suggested patch are in <code>audit/HOSTED_OBSERVATION.md</code>.</p>
+
+<h2><span class='n'>4</span>The engineering audit</h2>
 <p class='lede'>Reproducible with <code>python scripts/03_reproduce_edge_cases.py</code>: four of four contract checks hold, one declared gap reproduced, and two further defects found by hand. Full write-up with root causes and patches in <code>audit/ENGINEERING_AUDIT.md</code>.</p>
 
 <div class='panel'>
@@ -83,6 +104,7 @@ a{color:var(--frontier)}
   <h3>What didn't</h3>
   <table>
     <tr><th>Problem</th><th>Declared?</th><th>Result</th></tr>
+    <tr><td>The hosted app answers “where does it pay off” from only the 183 winning rows</td><td>no — mine, product-level</td><td class='fail'>wrong number</td></tr>
     <tr><td>The verdict never checks whether the question was answered</td><td>no — mine</td><td class='gap'>missing check</td></tr>
     <tr><td>A sheet is chosen by cell count, not by the question</td><td>yes, <code>xlsx_decoy_sheet</code></td><td class='gap'>reproduced</td></tr>
     <tr><td>The sizing line says 99 rows for a 400-row sheet</td><td>no — mine</td><td class='gap'>reproduced</td></tr>
@@ -97,7 +119,7 @@ a{color:var(--frontier)}
   <strong>Two wrong numbers from one run.</strong> The workbook reader chose a sheet by non-empty cell count, ignoring the goal (<code>io/loader.py::_read_excel</code>, line 158), so the goal was reported unanswerable — and the run still said PASS. And the sizing line announced <strong>99 rows</strong> for a sheet with <strong>400</strong>, because <code>workload.py::peek</code> (lines 84–85) treats every non-Parquet suffix as CSV and counts newline bytes inside the xlsx ZIP container. It returns <code>estimated=False</code>, so the wrong number is spoken as exact.
 </div>
 
-<h2><span class='n'>4</span>Reproduce the tool half</h2>
+<h2><span class='n'>5</span>Reproduce the tool half</h2>
 <pre>python -m venv .venv
 .venv/Scripts/pip install -e ".avaloka-src[formats,benchmark,dev]"
 
@@ -107,7 +129,7 @@ a{color:var(--frontier)}
 python scripts/03_reproduce_edge_cases.py</pre>
 
 <footer>
-  Full evidence, raw CLI logs, root causes and suggested patches: <code>audit/ENGINEERING_AUDIT.md</code>.<br>
+  Hosted-app evidence: <code>audit/HOSTED_OBSERVATION.md</code>. CLI evidence, raw logs, root causes and suggested patches: <code>audit/ENGINEERING_AUDIT.md</code>.<br>
   Back to <a href='index.html'>the analysis</a>. avaloka is Apache-2.0; the analysis and this page are MIT.
 </footer>
 

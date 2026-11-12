@@ -13,6 +13,14 @@ python scripts/03_reproduce_edge_cases.py
 
 Result: **4 / 4 contract checks hold; 1 / 1 declared gap reproduced.**
 
+**The strongest finding in this submission is not in this file.** It came from the
+hosted product, not the CLI: asked *"where does paying more actually pay off?"*, the
+app computed the answer from only the 183 rows where it paid off, and reported it
+as the whole dataset — turning +0.05 into +0.79 with no warning. That is written up
+separately in [`HOSTED_OBSERVATION.md`](HOSTED_OBSERVATION.md), because it needs
+screenshots and a different reproduction path. Read it first. Everything below is
+the CLI half.
+
 | Probe | Class | Declared as | Result |
 |---|---|---|---|
 | Sheet selection ignores the question | EXPECTED_GAP | `xlsx_decoy_sheet_outweighs_the_answer` | reproduced |
@@ -302,35 +310,44 @@ leaves the goal unanswered would fail this check instead of passing quietly.
 
 ## Note — access to the hosted edition (product observation, not a CLI defect)
 
-Before any of the above, the hosted web app could not be used from a new
-account. Signing in and uploading a file worked; creating a project prompted for
-a premium plan. That is consistent with two statements in the shipped docs:
+The hosted web app does run conversational analysis on a new account: sign-in
+worked, `data/sprout_llm_routing.csv` uploaded, the profiler ran, and questions
+could be asked in the side panel and exported as CSV. That is consistent with
+`docs/EDITIONS.md:71`, which lists *conversational data analysis* as available in
+**every** edition, including Free.
 
-- `docs/USER_GUIDE.md:114-117` — *"There is no sign-up form. Access comes from an
-  invitation… Submitting an email that has no account will not create one."*
-  A workspace is provisioned by invitation, so a new email has no self-serve path
-  into one.
-- `docs/EDITIONS.md:71` lists *conversational data analysis* as available in
-  **every** edition, including Free; `docs/EDITIONS.md:103` lists *model
-  training, registry, inference serving* as **OSS ● / Free ○ / Pro ●**.
+**Move to project** is the gated step. Clicking it on a completed analysis prompts
+for a premium plan, so a new account can analyse but cannot save the result into a
+shared project. That matches `docs/USER_GUIDE.md:114-117` — *"There is no sign-up
+form. Access comes from an invitation… Submitting an email that has no account will
+not create one"* — and `docs/EDITIONS.md:103`, which lists model training, registry
+and inference serving as **OSS ● / Free ○ / Pro ●**.
 
-So the capability this project needed was never the obstacle — workspace
-provisioning was. `docs/EDITIONS.md:42` states the intended workaround for a
-COST gate in as many words: **"Yes — self-host."** The open-source edition is
-Apache-2.0 and carries no gate on analysis, profiling, visualization, training or
-local execution (`docs/EDITIONS.md:130-158`).
+So the gate is on persistence and sharing, not on the analysis this project needed.
+`docs/EDITIONS.md:42` states the intended response to a COST gate in as many words:
+**"Yes — self-host."** The open-source edition is Apache-2.0 and carries no gate on
+analysis, profiling, visualization, training or local execution
+(`docs/EDITIONS.md:130-158`).
 
-**What this project did:** ran the open-source CLI, which is the documented path,
-and reproduced every result locally with no API key and no cloud account. Nothing
-below depends on the hosted app. The practical consequence for an evaluation
-like this one is worth stating plainly: the fastest way to run Avaloka is the
-clone-and-run path in `MANUAL.md`, and a participant who has not been invited to
-a workspace should go straight there rather than treat the hosted gate as a
-dead end.
+**What this project did:** every number in `index.html` was reproduced with the
+open-source CLI, with no API key and no cloud account, via the clone-and-run path in
+`MANUAL.md`. The hosted app was used separately, as a second opinion, and it is where
+`HOSTED_OBSERVATION.md` came from. Two practical notes for an evaluation like this
+one: the hosted analysis is genuinely usable without a plan, and a participant who
+wants to save or share the result should go straight to the CLI rather than treat
+the project gate as a dead end.
 
 ---
 
 ## Summary
+
+The most serious defect found is not in this file. In the hosted app, the question
+*"where does paying much more actually pay off, by job type?"* was answered from only
+the 183 rows where it did pay off, and presented as the whole 2,000-row dataset —
++0.054 became +0.79 with no warning, and the claim checker then flagged the *correct*
+follow-up answer instead. That is **`HOSTED_OBSERVATION.md`**, and it is the one worth
+fixing first: a wrong population passes every prose-to-number check, because a
+filtered table is internally consistent.
 
 Avaloka 1.6's evidence layer behaved as documented on all four contract probes —
 leakage blocked by name, a mandatory baseline, honest disclosure of an
@@ -341,13 +358,13 @@ a row count that matches nothing, both of which the project already tracks. The
 `CHANGELOG` and is the more useful of the two to fix first, because it is small,
 self-contained and currently speaks a confident wrong number.
 
-The one non-code friction worth flagging is access: the hosted edition is
-invite-only, and the docs say so — but only in `USER_GUIDE.md`, not on the
-pricing or sign-up surface where a new user meets the wall. A single line at the
-gate ("no workspace for this email — run the OSS edition or request an
-invitation") would have saved the detour.
+The one non-code friction worth flagging is about where the gate sits. Analysis
+itself works on a free hosted account; saving the result into a project does not.
+That distinction is not visible on the sign-up surface — one line at the gate
+("analysis is free; projects need a plan — or run the OSS edition") would prevent a
+new user from concluding the whole product is closed.
 
-Of everything here, **Finding 6 is the one worth fixing first.** It is five
+**Finding 6 is the CLI finding worth fixing first.** It is five
 lines, it sits in the layer the product is built around, and it closes the only
 place where the bundle contradicts itself: the reporter states plainly that the
 question was not answered, and the validator beside it returns `PASS`. Adding a
