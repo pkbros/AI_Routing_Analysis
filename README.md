@@ -4,6 +4,8 @@
 
 The findings stand on their own and are readable without knowing the tool ([`index.html`](index.html)). How the pipeline was run — and the defects the audit found in it — is a separate page ([`avaloka.html`](avaloka.html)) and two written reports: the hosted-app defect ([`audit/HOSTED_OBSERVATION.md`](audit/HOSTED_OBSERVATION.md)) and the CLI audit ([`audit/ENGINEERING_AUDIT.md`](audit/ENGINEERING_AUDIT.md)).
 
+**Live pages:** [findings](https://pkbros.github.io/AI_Routing_Analysis/index.html) · [how it was run](https://pkbros.github.io/AI_Routing_Analysis/avaloka.html)
+
 Submitted to the Avaloka Engineering Intern Hackathon (14-15 Nov 2026) by **Prateek Sharma**.
 
 ---
