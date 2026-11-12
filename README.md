@@ -24,6 +24,8 @@ From it I curate one analysis table, `data/sprout_llm_routing.csv`: **2,000 prom
 
 Fetching is $0 and uses **zero LLM tokens**: the numbers are downloaded once and cached. See `scripts/01_fetch_and_prepare_data.py`.
 
+**Scope limit:** the roster is fixed at the benchmark's 13 models, all 2024-era. A newer or cheaper model outside that set could beat every one of them, and nothing here claims otherwise. The comparison is *within this roster* — see the per-model table on `index.html`.
+
 ## Headline findings
 
 1. **The price gap is real and stable; the accuracy gap is not.** Across the whole set, a frontier call costs a mean **$4.82 per 1,000 turns** against **$0.094** for the economy tier — a **62.6x** multiplier (individual prompts range from 5.98x to 446x). Yet the mean *accuracy* advantage of the best frontier model over the best economy model is only **+0.0179** on a 0-1 correctness scale.

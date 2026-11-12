@@ -33,6 +33,10 @@ td.num{text-align:right}
 .pass{color:var(--ok);font-weight:600}
 .fail{color:var(--neg);font-weight:600}
 .gap{color:var(--warn);font-weight:600}
+.t-fr{color:var(--frontier);font-weight:600}
+.t-mid{color:var(--warn);font-weight:600}
+.t-eco{color:var(--economy);font-weight:600}
+.cap-src{color:var(--muted);font-size:12px}
 .callout{border-left:4px solid var(--neg);background:#fff1f2;border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0}
 .callout.ok{border-color:var(--ok);background:#ecfdf5}
 .callout code{background:rgba(0,0,0,.06);padding:1px 5px;border-radius:4px;font-size:13px}
@@ -74,6 +78,31 @@ a{color:var(--frontier)}
     <rect x='210' y='46' width='8.0' height='14' rx='3' fill='#14b8a6'/>
     <text x='226.0' y='57' font-size='12' fill='#64748b'>$0.0939  (51x smaller)</text>
   </svg>
+</div>
+
+<div class='panel'>
+  <h3>The 13 models in this comparison</h3>
+  <p class='cap'>Mean judge score on the same 2,000 prompts, and each model's real cost at 2026 list prices. These are per-model figures; the headline +0.018 compares the <em>best of each tier on each prompt</em> (0.928 vs 0.910). Source: artifacts/ground_truth_metrics.json → <code>by_model</code>.</p>
+  <table>
+    <tr><th>Model</th><th>Tier</th><th class='num'>Mean score</th><th class='num'>Perfect</th><th class='num'>Cost / 1k turns</th></tr>
+    <tr><td>GPT-4o <span class='cap-src'>(OpenAI)</span></td><td class='t-fr'>frontier</td><td class='num'>0.848</td><td class='num'>73.5%</td><td class='num'>$5.12</td></tr>
+    <tr><td>Claude 3.5 Sonnet <span class='cap-src'>(AWS Bedrock)</span></td><td class='t-fr'>frontier</td><td class='num'>0.833</td><td class='num'>70.3%</td><td class='num'>$7.62</td></tr>
+    <tr><td>Llama 3 405B <span class='cap-src'>(IBM watsonx)</span></td><td class='t-fr'>frontier</td><td class='num'>0.767</td><td class='num'>52.2%</td><td class='num'>$1.72</td></tr>
+    <tr><td>Llama 3.3 70B <span class='cap-src'>(watsonx)</span></td><td class='t-mid'>mid</td><td class='num'>0.810</td><td class='num'>55.4%</td><td class='num'>$0.367</td></tr>
+    <tr><td>Llama 3.1 70B <span class='cap-src'>(watsonx)</span></td><td class='t-mid'>mid</td><td class='num'>0.808</td><td class='num'>61.9%</td><td class='num'>$0.493</td></tr>
+    <tr><td>Mixtral 8x7B <span class='cap-src'>(watsonx)</span></td><td class='t-mid'>mid</td><td class='num'>0.621</td><td class='num'>38.9%</td><td class='num'>$0.154</td></tr>
+    <tr><td>Titan Text Premier <span class='cap-src'>(AWS Bedrock)</span></td><td class='t-mid'>mid</td><td class='num'>0.575</td><td class='num'>35.6%</td><td class='num'>$0.566</td></tr>
+    <tr><td>GPT-4o mini <span class='cap-src'>(OpenAI)</span></td><td class='t-eco'>economy</td><td class='num'>0.804</td><td class='num'>70.0%</td><td class='num'>$0.337</td></tr>
+    <tr><td>Llama 3.1 8B <span class='cap-src'>(watsonx)</span></td><td class='t-eco'>economy</td><td class='num'>0.684</td><td class='num'>47.1%</td><td class='num'>$0.094</td></tr>
+    <tr><td>Granite 3 8B <span class='cap-src'>(watsonx)</span></td><td class='t-eco'>economy</td><td class='num'>0.668</td><td class='num'>48.6%</td><td class='num'>$0.045</td></tr>
+    <tr><td>Llama 3.2 3B <span class='cap-src'>(watsonx)</span></td><td class='t-eco'>economy</td><td class='num'>0.622</td><td class='num'>39.8%</td><td class='num'>$0.051</td></tr>
+    <tr><td>Granite 3 2B <span class='cap-src'>(watsonx)</span></td><td class='t-eco'>economy</td><td class='num'>0.562</td><td class='num'>39.6%</td><td class='num'>$0.017</td></tr>
+    <tr><td>Llama 3.2 1B <span class='cap-src'>(watsonx)</span></td><td class='t-eco'>economy</td><td class='num'>0.449</td><td class='num'>23.4%</td><td class='num'>$0.020</td></tr>
+  </table>
+</div>
+
+<div class='callout'>
+  <strong>What this table constrains.</strong> Three limits worth knowing before reading anything else on the page. <strong>(1) The roster is fixed.</strong> These 13 models come from one benchmark and are 2024-era; a cheaper or newer model outside this set could beat every one of them, and nothing here says otherwise. <strong>(2) "Frontier" is a price band, not a quality band.</strong> Llama 3 405B sits in the frontier tier at $1.72 per 1,000 turns and scores 0.767 — below GPT-4o mini at $0.337 and 0.804. <strong>(3) Tiers are compared best-against-best.</strong> When the frontier loses a prompt, all three frontier models scored below the best cheap model on that question.
 </div>
 
 <h2><span class='n'>2</span>The 62x pays off in exactly one place: the code-writing job.</h2>

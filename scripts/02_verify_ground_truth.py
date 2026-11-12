@@ -3,6 +3,9 @@
 Computes exact ground-truth metrics from `data/sprout_llm_routing.csv` so every
 number reported by Avaloka CLI or the Avaloka web platform can be audited against
 deterministic Python arithmetic.
+
+Per-model aggregates (all 13 models, which the curated CSV does not carry
+individually) are computed from the raw HuggingFace cache written by stage 1.
 """
 
 from __future__ import annotations
@@ -15,6 +18,24 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 ARTIFACTS_DIR = ROOT / "artifacts"
+
+# Mirrors MODEL_PRICING in scripts/01_fetch_and_prepare_data.py.
+# (input $/Mtok, output $/Mtok, tier)
+MODEL_PRICING: dict[str, tuple[float, float, str]] = {
+    "aws-claude-3-5-sonnet-v1": (3.00, 15.00, "frontier"),
+    "openai-gpt-4o": (2.50, 10.00, "frontier"),
+    "wxai-llama-3-405b-instruct": (3.00, 3.00, "frontier"),
+    "aws-titan-text-premier-v1": (0.50, 1.50, "mid_tier"),
+    "wxai-llama-3-3-70b-instruct": (0.60, 0.60, "mid_tier"),
+    "wxai-llama-3-1-70b-instruct": (0.60, 0.60, "mid_tier"),
+    "wxai-mixtral-8x7b-instruct-v01": (0.24, 0.24, "mid_tier"),
+    "openai-gpt-4o-mini": (0.15, 0.60, "economy"),
+    "wxai-llama-3-1-8b-instruct": (0.05, 0.08, "economy"),
+    "wxai-granite-3-8b-instruct-8k-max-tokens": (0.06, 0.06, "economy"),
+    "wxai-llama-3-2-3b-instruct": (0.03, 0.05, "economy"),
+    "wxai-granite-3-2b-instruct-8k-max-tokens": (0.02, 0.02, "economy"),
+    "wxai-llama-3-2-1b-instruct": (0.01, 0.02, "economy"),
+}
 
 
 def main() -> None:
@@ -71,6 +92,39 @@ def main() -> None:
             "mean_frontier_advantage": round(float(g["frontier_advantage"].mean()), 6),
         }
 
+    by_model = {}
+    raw_cache = DATA_DIR / "_raw_sprout_test_cache.json"
+    if raw_cache.exists():
+        raw_rows = json.loads(raw_cache.read_text(encoding="utf-8"))
+        for model, (p_in, p_out, tier) in MODEL_PRICING.items():
+            scores: list[float] = []
+            costs: list[float] = []
+            in_tok: list[int] = []
+            out_tok: list[int] = []
+            for row in raw_rows:
+                rec = row.get("models", {}).get(model)
+                if not rec:
+                    continue
+                scores.append(float(rec.get("score") or 0.0))
+                n_in = int(rec.get("num_input_tokens") or 0)
+                n_out = int(rec.get("num_output_tokens") or 0)
+                in_tok.append(n_in)
+                out_tok.append(n_out)
+                costs.append((n_in * p_in + n_out * p_out) / 1_000_000.0)
+            if not scores:
+                continue
+            by_model[model] = {
+                "tier": tier,
+                "n": len(scores),
+                "mean_score": round(sum(scores) / len(scores), 4),
+                "perfect_pct": round(
+                    100.0 * sum(1 for s in scores if s >= 0.999) / len(scores), 1
+                ),
+                "mean_cost_per_1k_usd": round(1000.0 * sum(costs) / len(costs), 4),
+                "mean_input_tokens": round(sum(in_tok) / len(in_tok), 1),
+                "mean_output_tokens": round(sum(out_tok) / len(out_tok), 1),
+            }
+
     summary = {
         "n_rows": int(len(df)),
         "n_cols": int(df.shape[1]),
@@ -92,6 +146,7 @@ def main() -> None:
         "by_task_domain": by_domain,
         "by_agent_role": by_agent_role,
         "by_fallback_route": by_fallback,
+        "by_model": by_model,
     }
 
     out_file = ARTIFACTS_DIR / "ground_truth_metrics.json"
