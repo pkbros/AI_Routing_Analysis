@@ -184,7 +184,7 @@ a{color:var(--frontier)}
 
 <div class='panel'>
   <h3>Model panel and the mandatory baseline</h3>
-  <p class='cap'>Source: artifacts/avaloka-train-clean/model_card.md — verdict PASS, certified deployable at 4/4 (the highest tier)</p>
+  <p class='cap'>Trained on pre-call features only — nothing recorded after the call is in the feature set. Source: artifacts/avaloka-train-clean/model_card.md — verdict PASS, 4/4.</p>
   <table>
     <tr><th>Candidate</th><th class='num'>Holdout roc_auc</th><th class='num'>CV mean ± std</th></tr>
     <tr><td>random_forest <em>(selected)</em></td><td class='num'>0.9560</td><td class='num'>0.933 ± 0.006</td></tr>
@@ -192,10 +192,6 @@ a{color:var(--frontier)}
     <tr><td>logistic_regression</td><td class='num'>0.9443</td><td class='num'>0.920 ± 0.013</td></tr>
     <tr><td>trivial baseline (prior)</td><td class='num'>0.5000</td><td class='num'>—</td></tr>
   </table>
-</div>
-
-<div class='callout'>
-  <strong>A perfect score is a warning, not a win.</strong> Adding one post-call column (<code>post_call_route_flag</code>) that encodes the target drove the claimed score to <strong>1.0000</strong>. The validation step refused it: verdict <span class='fail'>FAIL</span>, the leaking column named, and the deployable ceiling capped at <strong>1/4</strong>. A model that has learned nothing should not look perfect.
 </div>
 
 <h2><span class='n'>5</span>Reproduce it</h2>
